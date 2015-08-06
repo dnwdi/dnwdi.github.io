@@ -5,7 +5,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com//"/>
-  <updated>2015-08-06T02:15:40.241Z</updated>
+  <updated>2015-08-06T03:59:05.702Z</updated>
   <id>http://yoursite.com//</id>
   
   <author>
@@ -14,6 +14,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[这是一篇测试文章]]></title>
+    <link href="http://yoursite.com/2015/08/06/test/"/>
+    <id>http://yoursite.com/2015/08/06/test/</id>
+    <published>2015-08-06T03:53:15.000Z</published>
+    <updated>2015-08-06T03:59:05.702Z</updated>
+    <content type="html"><![CDATA[<h1 id="我的博客正式开通啦！">我的博客正式开通啦！</h1><p><img src="http://7xkx7i.com1.z0.glb.clouddn.com/222211817.jpg" alt="此处输入图片的描述"></p>
+<pre><code>public <span class="value">static</span> void <span class="function">main</span>(String<span class="attr_selector">[]</span> args){
+    <span class="function">while</span>(<span class="function">isAlive</span>()){
+        <span class="function">doStudy</span>();
+    }
+}
+</code></pre><p><a href="http://dnwdi.github.io" target="_blank" rel="external">我的博客地址</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="我的博客正式开通啦！">我的博客正式开通啦！</h1><p><img src="http://7xkx7i.com1.z0.glb.clouddn.com/222211817.jpg" alt="此处输入图片的描述"></p>
+<pre><code>public ]]>
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Hello World]]></title>
