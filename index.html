@@ -37,14 +37,15 @@
 
 
 <script>
-	var _hmt = _hmt || [];
-	(function() {
-	  var hm = document.createElement("script");
-	  hm.src = "//hm.baidu.com/hm.js?0986145b5268afabc4775f6b43e924ab";
-	  var s = document.getElementsByTagName("script")[0]; 
-	  s.parentNode.insertBefore(hm, s);
-	})();
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?0986145b5268afabc4775f6b43e924ab";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
 </script>
+
 
 </head>
 
@@ -111,6 +112,51 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2015-08-07 </div>
+			<div class="article-title"><a href="/2015/08/07/blog-with-hexo/" >Windows下搭建Github Blog</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <p>第一次在github上搭建自己的博客，花了将近一天的时间，终于能出了一个像样的页面，现在将我搭建的过程记录一下，省的再走弯路。</p>
+<p>一开始在网上搜教程，有好多讲用jekyll的，也让我记住了阮一峰这个人！这个是他写的教程：<a href="http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html" target="_blank" rel="external">搭建一个免费的，无限流量的Blog—-github Pages和Jekyll入门</a> 。在跑他这个例子的时候，我就花了好多时间==！主要的坑如下：</p>
+<ol>
+<li><p>使用UTF-8无BOM格式编码。由于我用的notepad++编辑器，默认编码是ANSI，所以会出现乱码情况</p>
+</li>
+<li><p>注意gh_pages分支和master分支的区别。在user pages如repo是dnwdi.github.io下的博客用master分支；<br>在project pages如repo是dnwdi.github.ioblog下的博客用gh_pages分支 </p>
+</li>
+</ol>
+<p>最要命的一点是，当配置文件或者Liquid模板语言不小心写错了，git push上去之后，git会发一封build failed的邮件，但完全没有说明具体的出错地方，所以查错非常困难！这点无法容忍，所以最后虽然页面出来了，但不是想要的结果，有些liquid语言没有正确解析，也懒得调试了，直接放弃了</p>
+<p>之后看到用Hexo搭建的教程，创建简单，可以本地调试，可以看到具体的出错地方，这点我觉得是最大的优点，有问题不要紧，至少要知道在哪改嘛！</p>
+<p>参照的博客如下，写的都非常详尽！</p>
+<ul>
+<li><a href="http://www.isetsuna.com/categories/Hexo/" target="_blank" rel="external">Hexo博客系列</a></li>
+<li><a href="http://ibruce.info/2013/11/22/hexo-your-blog/" target="_blank" rel="external">hexo你的博客</a></li>
+<li><a href="http://segmentfault.com/a/1190000002592993" target="_blank" rel="external">Hexo 3.0 静态博客使用指南</a></li>
+<li><a href="http://baoxiehao.com/2014/05/17/Hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96/" target="_blank" rel="external">Hexo博客优化</a></li>
+</ul>
+<p>由于hexo页面使用markdown语法，故附上我使用的markdown编辑器：</p>
+<p><a href="https://www.zybuluo.com/mdeditor" target="_blank" rel="external">Cmd Markdown编辑器</a></p>
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/08/07/blog-with-hexo/#more" class="btn btn-default more">阅读此文</a>
+</div>
+
 		
 			
 	
@@ -212,14 +258,37 @@
 
 		
 			
+	<div class="widget">
+		<h4>分类</h4>
+		<ul class="tag_box inline list-unstyled">
+		
+			<li><a href="/categories/hexo/">hexo<span>1</span></a></li>
+		
+		</ul>
+	</div>
+
 		
 			
+	<div class="widget">
+		<h4>标签云</h4>
+		<ul class="tag_box inline list-unstyled">		
+		
+			<li><a href="/tags/hexo/">hexo<span>1</span></a></li>
+		
+		 
+		</ul>
+	</div>
+
 
 		
 			
 <div class="widget">
   <h4>最新文章</h4>
   <ul class="entry list-unstyled">
+    
+      <li>
+        <a href="/2015/08/07/blog-with-hexo/" ><i class="fa fa-file-o"></i>Windows下搭建Github Blog...</a>
+      </li>
     
       <li>
         <a href="/2015/08/06/test/" ><i class="fa fa-file-o"></i>这是一篇测试文章...</a>
@@ -241,6 +310,8 @@
 		<li><i class="fa fa-github"></i><a href="https://github.com/dnwdi" title="My Github account." target="_blank"]);">My Github</a></li>
 	
 		<li><i class="fa fa-linkedin"></i><a href="https://cn.linkedin.com/in/dnwdi" title="My Linkin account." target="_blank"]);">My LinkedIn</a></li>
+	
+		<li><i class="fa fa-github"></i><a href="http://fwwdn.github.io/" title="师傅的博客." target="_blank"]);">fww&#39;s blog</a></li>
 	
 	</ul>
 </div>
@@ -272,6 +343,18 @@
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/main.js"></script>
 
+
+<script type="text/javascript">
+  var duoshuoQuery = { short_name: 'dnwdi' };
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';
+    ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
 
 
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
