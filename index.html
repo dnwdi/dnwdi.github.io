@@ -117,6 +117,92 @@ var _hmt = _hmt || [];
 	
 	<!-- display as entry -->	
 		<h3 class="title">
+			<div class="date"> 2015-08-11 </div>
+			<div class="article-title"><a href="/2015/08/11/redis-batch-del/" >批量删除Redis的key</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <pre><code>redis-<span class="keyword">cli</span> KEYS <span class="string">"yourkeys_*"</span> | xargs redis-<span class="keyword">cli</span> DEL
+</code></pre><hr>
+<p>Redis并没有提供批量删除记录的方法，这有时候很不方便，特别是重新初始化数据的时候。一般有两种做法：<br>如果业务场景明确，可以通过DBID进行区分，Redis默认的DBID是0，默认的配置文件是有16个DB，可以在应用中通过select方法指定数据库的ID进行存取。然后通过FlushDB命令能清空某个ID的数据库，达到重新初始化的目的。<br>如果某个ID的数据库已经有很多类型的记录了，无法整个库清空，那么就需要批量的删除key值，这时<strong>可以采用Linux管道</strong>，比如我要删除DBID为1的test开头的key值：</p>
+<pre><code>[root@banping redis]# /banping/redis/src/redis-<span class="keyword">cli</span> -<span class="keyword">n</span> 1 keys “<span class="keyword">test</span>*” | xargs /banping/redis/src/redis-<span class="keyword">cli</span> -<span class="keyword">n</span> 1 del
+(integer) 5095
+</code></pre><p>把keys的输出作为del的输入，这样就批量删除了。<br>附redis-cli 命令：<br>redis-cli 2.4.2</p>
+<pre><code>Usage: redis-cli [OPTIONS] [cmd [arg [arg ...]]]
+-h Server hostname (default: 127.0.<span class="operator">0.<span class="number">1</span>)
+-<span class="keyword">p</span> <span class="keyword">Server</span> port (<span class="keyword">default</span>: <span class="number">6379</span>)
+-s <span class="keyword">Server</span> socket (overrides hostname <span class="keyword">and</span> port)
+-a <span class="keyword">Password</span> <span class="keyword">to</span> <span class="keyword">use</span> <span class="keyword">when</span> connecting <span class="keyword">to</span> the <span class="keyword">server</span>
+-r <span class="keyword">Execute</span> specified command <span class="keyword">N</span> times
+-<span class="keyword">i</span> <span class="keyword">When</span> -r <span class="keyword">is</span> used, waits seconds per command.
+It <span class="keyword">is</span> possible <span class="keyword">to</span> specify sub-<span class="keyword">second</span> times <span class="keyword">like</span> -<span class="keyword">i</span> <span class="number">0.1</span>.
+-<span class="keyword">n</span> <span class="keyword">Database</span> <span class="built_in">number</span>
+-x <span class="keyword">Read</span> <span class="keyword">last</span> argument <span class="keyword">from</span> STDIN
+-<span class="keyword">d</span> Multi-<span class="keyword">bulk</span> delimiter <span class="keyword">in</span> <span class="keyword">for</span> <span class="keyword">raw</span> formatting (<span class="keyword">default</span>: \<span class="keyword">n</span>)
+–<span class="keyword">raw</span> <span class="keyword">Use</span> <span class="keyword">raw</span> formatting <span class="keyword">for</span> replies (<span class="keyword">default</span> <span class="keyword">when</span> STDOUT <span class="keyword">is</span> <span class="keyword">not</span> a tty)
+–latency Enter a special <span class="keyword">mode</span> continuously sampling latency.
+–<span class="keyword">help</span> <span class="keyword">Output</span> this <span class="keyword">help</span> <span class="keyword">and</span> <span class="keyword">exit</span>
+–<span class="keyword">version</span> <span class="keyword">Output</span> <span class="keyword">version</span> <span class="keyword">and</span> <span class="keyword">exit</span></span>
+</code></pre>
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/08/11/redis-batch-del/#more" class="btn btn-default more">阅读此文</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2015-08-11 </div>
+			<div class="article-title"><a href="/2015/08/11/redis-error/" >redis_error</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <p>首先应该明白报这个错误说明了你用的<strong>jedis方法与redis服务器中存储数据的类型存在冲突</strong>。</p>
+<p>例如：数据库中有一个key是usrInfo的数据存储的是Hash类型的，但是你使用jedis执行数据</p>
+<p>操作的时候却使用了非Hash的操作方法，比如Sorted Sets里的方法。此时就会报</p>
+<p><code>ERR Operation against a key holding the wrong kind of value</code></p>
+<p>问题解决：</p>
+<p>先执行一条如下命令，usrInfo为其中的一个key值。</p>
+<pre><code>redis <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt;type usrInfo
+</code></pre><p>此时会显示出该key存储在现在redis服务器中的类型，例如：</p>
+<pre><code>redis <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt;hash
+</code></pre><p>则表示key为usrInfo的数据是以hash类型存储在redis服务器里的，此时操作这个数据就必须使用hset、hget等操作方法。</p>
+<p>如果是zset如下：</p>
+<pre><code>redis <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt;zset
+</code></pre><p>则表示数据类型为Sorted Sets的。此时就需要使用zadd、zrange等操作方法，否则就会报ERR Operation against a key holding the wrong kind of value这个错误！</p>
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/08/11/redis-error/#more" class="btn btn-default more">阅读此文</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
 			<div class="date"> 2015-08-07 </div>
 			<div class="article-title"><a href="/2015/08/07/blog-with-hexo/" >Windows下搭建Github Blog</a></div>						
 		</h3>
@@ -264,6 +350,8 @@ var _hmt = _hmt || [];
 		
 			<li><a href="/categories/hexo/">hexo<span>1</span></a></li>
 		
+			<li><a href="/categories/redis/">redis<span>2</span></a></li>
+		
 		</ul>
 	</div>
 
@@ -272,6 +360,8 @@ var _hmt = _hmt || [];
 	<div class="widget">
 		<h4>标签云</h4>
 		<ul class="tag_box inline list-unstyled">		
+		
+			<li><a href="/tags/redis/">redis<span>2</span></a></li>
 		
 			<li><a href="/tags/hexo/">hexo<span>1</span></a></li>
 		
@@ -285,6 +375,14 @@ var _hmt = _hmt || [];
 <div class="widget">
   <h4>最新文章</h4>
   <ul class="entry list-unstyled">
+    
+      <li>
+        <a href="/2015/08/11/redis-batch-del/" ><i class="fa fa-file-o"></i>批量删除Redis的key...</a>
+      </li>
+    
+      <li>
+        <a href="/2015/08/11/redis-error/" ><i class="fa fa-file-o"></i>redis_error...</a>
+      </li>
     
       <li>
         <a href="/2015/08/07/blog-with-hexo/" ><i class="fa fa-file-o"></i>Windows下搭建Github Blog...</a>

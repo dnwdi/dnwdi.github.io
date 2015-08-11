@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>归档：2015/8 | dnwdi</title>
+  <title>redis_error | dnwdi</title>
   <meta name="author" content="dnwdi">
   
   <meta name="description" content="dnwdi&#39;s blog | java">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="redis_error"/>
   <meta property="og:site_name" content="dnwdi"/>
 
   
@@ -96,165 +96,123 @@ var _hmt = _hmt || [];
   	<div class="content">
     	 
 
-<!-- title -->
-<div class="page-header">
-  <h1 class="archive-title">2015/8</h1>
+
+	
+		<div class="page-header">		
+			<h1> redis_error</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div class="col-md-9">
+	
+
+			
+
+	<!-- content -->
+	<div class="mypage">		
+	    <p>首先应该明白报这个错误说明了你用的<strong>jedis方法与redis服务器中存储数据的类型存在冲突</strong>。</p>
+<p>例如：数据库中有一个key是usrInfo的数据存储的是Hash类型的，但是你使用jedis执行数据</p>
+<p>操作的时候却使用了非Hash的操作方法，比如Sorted Sets里的方法。此时就会报</p>
+<p><code>ERR Operation against a key holding the wrong kind of value</code></p>
+<p>问题解决：</p>
+<p>先执行一条如下命令，usrInfo为其中的一个key值。</p>
+<pre><code>redis <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt;type usrInfo
+</code></pre><p>此时会显示出该key存储在现在redis服务器中的类型，例如：</p>
+<pre><code>redis <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt;hash
+</code></pre><p>则表示key为usrInfo的数据是以hash类型存储在redis服务器里的，此时操作这个数据就必须使用hset、hget等操作方法。</p>
+<p>如果是zset如下：</p>
+<pre><code>redis <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt;zset
+</code></pre><p>则表示数据类型为Sorted Sets的。此时就需要使用zadd、zrange等操作方法，否则就会报ERR Operation against a key holding the wrong kind of value这个错误！</p>
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2015/08/11/redis-batch-del/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>上一页</a></li>
+  		
+
+        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2015/08/07/blog-with-hexo/" class="alignright next">下一页<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
 </div>
 
-<div class="row page">
-  <!-- cols -->
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">留言</h2>
+
   
-  <div class="col-md-9">
+  	 <div class="ds-thread" data-thread-key="2015/08/11/redis-error/" data-title="redis_error" data-url="http://www.dnwdi.com/2015/08/11/redis-error/"></div>  
+  
+</section>
+
 	
-
-	  <div class="archive">
-		
-		
-		
-			
-			
-			<h4 class="archive-ul" data-toggle="collapse" data-target="#2015">2015<b class="caret"></b></h4>
-			<ul id="2015" class="collapse in">
-			
-		
-		<li class="listing-item">
-		<span class="date_class"> 2015-08-11 </span> &raquo;
-		
-		   <span class="title"><a href="/2015/08/11/redis-batch-del/" >批量删除Redis的key</a></span>
-		
-		</li>			
-		
-		
-		
-		<li class="listing-item">
-		<span class="date_class"> 2015-08-11 </span> &raquo;
-		
-		   <span class="title"><a href="/2015/08/11/redis-error/" >redis_error</a></span>
-		
-		</li>			
-		
-		
-		
-		<li class="listing-item">
-		<span class="date_class"> 2015-08-07 </span> &raquo;
-		
-		   <span class="title"><a href="/2015/08/07/blog-with-hexo/" >Windows下搭建Github Blog</a></span>
-		
-		</li>			
-		
-		
-		
-		<li class="listing-item">
-		<span class="date_class"> 2015-08-06 </span> &raquo;
-		
-		   <span class="title"><a href="/2015/08/06/test/" >这是一篇测试文章</a></span>
-		
-		</li>			
-		
-		
-		
-		<li class="listing-item">
-		<span class="date_class"> 2015-08-06 </span> &raquo;
-		
-		   <span class="title"><a href="/2015/08/06/hello-world/" >Hello World</a></span>
-		
-		</li>			
-		
-		</ul>
-		</div>
-
-</div> <!-- col-md-9/col-md-12 -->
-
-
-<div class="col-md-3">
-	<div id="sidebar">
+	</div> <!-- col-md-9/col-md-12 -->
 	
-			<div class="form-group has-success has-feedback">
-  <form action="//google.com/search" method="get" accept-charset="utf-8" >
-    <input type="search" name="q" results="0" placeholder="搜索" class="form-control">
-    <input type="hidden" name="q" value="site:www.dnwdi.com">	
-  </form>
-</div>
+	
+		<div class="col-md-3"> 
 
-		
-			
-	<div class="widget">
-		<h4>分类</h4>
-		<ul class="tag_box inline list-unstyled">
-		
-			<li><a href="/categories/hexo/">hexo<span>1</span></a></li>
-		
-			<li><a href="/categories/redis/">redis<span>2</span></a></li>
-		
-		</ul>
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2015-08-11 
 	</div>
+	
 
-		
-			
-	<div class="widget">
-		<h4>标签云</h4>
-		<ul class="tag_box inline list-unstyled">		
-		
-			<li><a href="/tags/hexo/">hexo<span>1</span></a></li>
-		
-			<li><a href="/tags/redis/">redis<span>2</span></a></li>
-		
-		 
-		</ul>
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/redis/">redis<span>2</span></a></li>
+  </li>
+
+    </ul>
 	</div>
+	
 
-
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/redis/">redis<span>2</span></a></li>
+    </ul>
+	</div>
 		
-			
-<div class="widget">
-  <h4>最新文章</h4>
-  <ul class="entry list-unstyled">
-    
-      <li>
-        <a href="/2015/08/11/redis-batch-del/" ><i class="fa fa-file-o"></i>批量删除Redis的key...</a>
-      </li>
-    
-      <li>
-        <a href="/2015/08/11/redis-error/" ><i class="fa fa-file-o"></i>redis_error...</a>
-      </li>
-    
-      <li>
-        <a href="/2015/08/07/blog-with-hexo/" ><i class="fa fa-file-o"></i>Windows下搭建Github Blog...</a>
-      </li>
-    
-      <li>
-        <a href="/2015/08/06/test/" ><i class="fa fa-file-o"></i>这是一篇测试文章...</a>
-      </li>
-    
-      <li>
-        <a href="/2015/08/06/hello-world/" ><i class="fa fa-file-o"></i>Hello World...</a>
-      </li>
-    
-  </ul>
-</div>
 
-		
-			
-<div class="widget">
-	<h4>链接</h4>
-	<ul class="blogroll list-unstyled">
+	<!-- toc -->
+	<div class="meta-widget">
 	
-		<li><i class="fa fa-github"></i><a href="https://github.com/dnwdi" title="My Github account." target="_blank"]);">My Github</a></li>
+	</div>
 	
-		<li><i class="fa fa-linkedin"></i><a href="https://cn.linkedin.com/in/dnwdi" title="My Linkin account." target="_blank"]);">My LinkedIn</a></li>
+    <hr>
 	
-		<li><i class="fa fa-github"></i><a href="http://fwwdn.github.io/" title="师傅的博客." target="_blank"]);">fww&#39;s blog</a></li>
+</div><!-- col-md-3 -->
+
 	
-	</ul>
-</div>
 
-
-		
-	</div> <!-- sidebar -->
-</div> <!-- col-md-3 -->
-
-
-
+</div><!-- row -->
 
 	</div>
   </div>
