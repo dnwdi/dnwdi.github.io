@@ -47,9 +47,14 @@ var _hmt = _hmt || [];
 </script>
 
 
+  
+  <script src="/snow/js/snow.js"></script>
+  <script>createSnow('', 6);</script>
+  
+  <script src="/water/js/jquery.ripples.js"></script>
 </head>
 
- <body>  
+ <body>
   <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
       <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -118,6 +123,42 @@ var _hmt = _hmt || [];
 	<!-- display as entry -->	
 		<h3 class="title">
 			<div class="date"> 2015-08-11 </div>
+			<div class="article-title"><a href="/2015/08/11/mysql-index/" >MySQL索引创建 删除 增加 修改命令</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <p>在mysql中索引是我们对数据库进行优化的一个很好的功能，下面我来给大家介绍mysql 索引的创建 删除 增加 修改方法，希望些教程对各位朋友有所帮助。</p>
+<p><strong>CREATE命令创建唯一索引：</strong><br>可以创建一个唯一索引的表。唯一的索引意味着两个行不能拥有相同的索引值。这里是语法来创建索引的表</p>
+<pre><code><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> index_name
+<span class="keyword">ON</span> table_name ( column1, column2,...);</span>
+</code></pre><p>可以使用一个或多个列上创建索引。例如，我们可以创建一个索引的使用在表tutorials_tbl的tutorial_author列上</p>
+<pre><code><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> AUTHOR_INDEX
+<span class="keyword">ON</span> tutorials_tbl (tutorial_author)</span>
+</code></pre><p><strong>CREATE命令创建简单索引</strong><br>可以创建一个简单的索引的表。只要省略UNIQUE关键字的查询创建一个简单的索引。简单的索引允许重复表中的值。<br>如果你想在一列以降序索引值，可以在列名后添加保留字DESC：</p>
+<pre><code>mysql&gt; <span class="keyword">CREATE</span> <span class="keyword">INDEX</span> AUTHOR_INDEX
+<span class="keyword">ON</span> tutorials_tbl (tutorial_author <span class="keyword">DESC</span>)
+</code></pre>
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/08/11/mysql-index/#more" class="btn btn-default more">阅读此文</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2015-08-11 </div>
 			<div class="article-title"><a href="/2015/08/11/redis-batch-del/" >批量删除Redis的key</a></div>						
 		</h3>
 	
@@ -165,7 +206,7 @@ It <span class="keyword">is</span> possible <span class="keyword">to</span> spec
 	<!-- display as entry -->	
 		<h3 class="title">
 			<div class="date"> 2015-08-11 </div>
-			<div class="article-title"><a href="/2015/08/11/redis-error/" >redis_error</a></div>						
+			<div class="article-title"><a href="/2015/08/11/redis-error/" >redis_error:Operation against a key holding the wrong kind of value</a></div>						
 		</h3>
 	
 
@@ -350,6 +391,8 @@ It <span class="keyword">is</span> possible <span class="keyword">to</span> spec
 		
 			<li><a href="/categories/hexo/">hexo<span>1</span></a></li>
 		
+			<li><a href="/categories/mysql/">mysql<span>1</span></a></li>
+		
 			<li><a href="/categories/redis/">redis<span>2</span></a></li>
 		
 		</ul>
@@ -361,9 +404,13 @@ It <span class="keyword">is</span> possible <span class="keyword">to</span> spec
 		<h4>标签云</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
+			<li><a href="/tags/hexo/">hexo<span>1</span></a></li>
+		
 			<li><a href="/tags/redis/">redis<span>2</span></a></li>
 		
-			<li><a href="/tags/hexo/">hexo<span>1</span></a></li>
+			<li><a href="/tags/mysql/">mysql<span>1</span></a></li>
+		
+			<li><a href="/tags/索引/">索引<span>1</span></a></li>
 		
 		 
 		</ul>
@@ -377,11 +424,15 @@ It <span class="keyword">is</span> possible <span class="keyword">to</span> spec
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2015/08/11/mysql-index/" ><i class="fa fa-file-o"></i>MySQL索引创建 删除 增加 修改命令...</a>
+      </li>
+    
+      <li>
         <a href="/2015/08/11/redis-batch-del/" ><i class="fa fa-file-o"></i>批量删除Redis的key...</a>
       </li>
     
       <li>
-        <a href="/2015/08/11/redis-error/" ><i class="fa fa-file-o"></i>redis_error...</a>
+        <a href="/2015/08/11/redis-error/" ><i class="fa fa-file-o"></i>redis_error:Operation again...</a>
       </li>
     
       <li>
@@ -390,10 +441,6 @@ It <span class="keyword">is</span> possible <span class="keyword">to</span> spec
     
       <li>
         <a href="/2015/08/06/test/" ><i class="fa fa-file-o"></i>这是一篇测试文章...</a>
-      </li>
-    
-      <li>
-        <a href="/2015/08/06/hello-world/" ><i class="fa fa-file-o"></i>Hello World...</a>
       </li>
     
   </ul>
@@ -428,7 +475,7 @@ It <span class="keyword">is</span> possible <span class="keyword">to</span> spec
   <footer> <p>
   &copy; 2015 dnwdi
   
-      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+      Go For IT!    
 </p> </footer>
 </div> <!-- container-narrow -->
   

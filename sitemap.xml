@@ -2,13 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://www.dnwdi.com/2015/08/11/redis-batch-del/</loc>
-    <lastmod>2015-08-11T06:07:09.720Z</lastmod>
+    <loc>http://www.dnwdi.com/2015/08/11/mysql-index/</loc>
+    <lastmod>2015-08-11T12:46:21.181Z</lastmod>
   </url>
   
   <url>
     <loc>http://www.dnwdi.com/2015/08/11/redis-error/</loc>
-    <lastmod>2015-08-11T03:50:40.540Z</lastmod>
+    <lastmod>2015-08-11T06:08:33.858Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.dnwdi.com/2015/08/11/redis-batch-del/</loc>
+    <lastmod>2015-08-11T06:07:09.720Z</lastmod>
   </url>
   
   <url>

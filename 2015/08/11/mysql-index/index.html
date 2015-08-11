@@ -1,0 +1,291 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>MySQL索引创建 删除 增加 修改命令 | dnwdi</title>
+  <meta name="author" content="dnwdi">
+  
+  <meta name="description" content="dnwdi&#39;s blog | java">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="MySQL索引创建 删除 增加 修改命令"/>
+  <meta property="og:site_name" content="dnwdi"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?0986145b5268afabc4775f6b43e924ab";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  
+  <script src="/snow/js/snow.js"></script>
+  <script>createSnow('', 6);</script>
+  
+  <script src="/water/js/jquery.ripples.js"></script>
+</head>
+
+ <body>
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">dnwdi</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> MySQL索引创建 删除 增加 修改命令</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div class="col-md-9">
+	
+
+			
+
+	<!-- content -->
+	<div class="mypage">		
+	    <p>在mysql中索引是我们对数据库进行优化的一个很好的功能，下面我来给大家介绍mysql 索引的创建 删除 增加 修改方法，希望些教程对各位朋友有所帮助。</p>
+<p><strong>CREATE命令创建唯一索引：</strong><br>可以创建一个唯一索引的表。唯一的索引意味着两个行不能拥有相同的索引值。这里是语法来创建索引的表</p>
+<pre><code><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> index_name
+<span class="keyword">ON</span> table_name ( column1, column2,...);</span>
+</code></pre><p>可以使用一个或多个列上创建索引。例如，我们可以创建一个索引的使用在表tutorials_tbl的tutorial_author列上</p>
+<pre><code><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> AUTHOR_INDEX
+<span class="keyword">ON</span> tutorials_tbl (tutorial_author)</span>
+</code></pre><p><strong>CREATE命令创建简单索引</strong><br>可以创建一个简单的索引的表。只要省略UNIQUE关键字的查询创建一个简单的索引。简单的索引允许重复表中的值。<br>如果你想在一列以降序索引值，可以在列名后添加保留字DESC：</p>
+<pre><code>mysql&gt; <span class="keyword">CREATE</span> <span class="keyword">INDEX</span> AUTHOR_INDEX
+<span class="keyword">ON</span> tutorials_tbl (tutorial_author <span class="keyword">DESC</span>)
+</code></pre><a id="more"></a>
+<p><strong>ALTER命令添加和删除索引：</strong><br>有四种类型的语句表添加索引：</p>
+<pre><code><span class="operator"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tbl_name <span class="keyword">ADD</span> PRIMARY <span class="keyword">KEY</span> (column_list)</span>
+</code></pre><p>这条语句添加一个主键，这意味着索引值必须是唯一的，不能是NULL。</p>
+<pre><code><span class="operator"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tbl_name <span class="keyword">ADD</span> <span class="keyword">UNIQUE</span> index_name (column_list)</span>
+</code></pre><p>这条语句创建一个索引，其值必须是唯一的（除NULL值，这可能会多次出现）。</p>
+<pre><code><span class="operator"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tbl_name <span class="keyword">ADD</span> <span class="keyword">INDEX</span> index_name (column_list)</span>
+</code></pre><p>这增加了一个普通的索引，其中的任何值，可能会出现多于一次。</p>
+<pre><code><span class="operator"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tbl_name <span class="keyword">ADD</span> FULLTEXT index_name (column_list)</span>
+</code></pre><p>这将创建一个特殊的FULLTEXT索引，用于文本搜索的目的。</p>
+<p>下面是这个例子，在现有的表添加索引。</p>
+<pre><code>mysql&gt; ALTER TABLE testalter_tbl ADD INDEX <span class="list">(<span class="keyword">c</span>)</span><span class="comment">;</span>
+</code></pre><p>可以删除任何INDEX通过使用DROP子句和使用ALTER命令。试试下面的例子上面创建的索引下降。</p>
+<pre><code>mysql&gt; ALTER TABLE testalter_tbl DROP INDEX <span class="list">(<span class="keyword">c</span>)</span><span class="comment">;</span>
+</code></pre><p>可以使用ALTER命令删除主键如下：</p>
+<pre><code>mysql&gt; ALTER TABLE testalter_tbl DROP PRIMARY <span class="keyword">KEY</span><span class="comment">;</span>
+</code></pre><p>显示索引信息：<br>您可以使用SHOW INDEX命令，列出所有相关联的索引表。垂直格式输出（指定由 G）往往是有用的这句话，以避免长时间行重叠：</p>
+<pre><code>mysql&gt; SHOW <span class="keyword">INDEX</span> <span class="keyword">FROM</span> table_nameG
+</code></pre><p><strong>ALTER命令加索引</strong><br>mysql&gt; alter table 表名 add index 索引名 (字段名1[，字段名2 …]);</p>
+<pre><code>mysql&gt; alter table employee add <span class="built_in">index</span> emp_name (<span class="keyword">name</span>);
+</code></pre><p>加主关键字的索引<br>mysql&gt; alter table 表名 add primary key (字段名);</p>
+<pre><code>mysql&gt; alter table employee add primary key<span class="list">(<span class="keyword">id</span>)</span><span class="comment">;</span>
+</code></pre><p>加唯一限制条件的索引<br>mysql&gt; alter table 表名 add unique 索引名 (字段名);</p>
+<pre><code>mysql&gt; alter table employee add unique emp_name2<span class="list">(<span class="keyword">cardnumber</span>)</span><span class="comment">;</span>
+</code></pre><p>查看某个表的索引<br>mysql&gt; show index from 表名;</p>
+<pre><code>mysql&gt; show <span class="keyword">index</span> <span class="keyword">from</span> employee;
+</code></pre><p>删除某个索引<br>mysql&gt; alter table 表名 drop index 索引名;</p>
+<pre><code>mysql&gt;alter <span class="keyword">table</span> employee <span class="keyword">drop</span> index emp_name;
+</code></pre><p>总结索引与优化<br>1、选择索引的数据类型<br>MySQL支持很多数据类型，选择合适的数据类型存储数据对性能有很大的影响。通常来说，可以遵循以下一些指导原则：<br>(1)越小的数据类型通常更好：越小的数据类型通常在磁盘、内存和CPU缓存中都需要更少的空间，处理起来更快。<br>(2)简单的数据类型更好：整型数据比起字符，处理开销更小，因为字符串的比较更复杂。在MySQL中，应该用内置的日期和时间数据类型，而不是用字符串来存储时间；以及用整型数据类型存储IP地址。<br>(3)尽量避免NULL：应该指定列为NOT NULL，除非你想存储NULL。在MySQL中，含有空值的列很难进行查询优化，因为它们使得索引、索引的统计信息以及比较运算更加复杂。你应该用0、一个特殊的值或者一个空串代替空值。</p>
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>上一页</a></li>
+        
+
+        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2015/08/11/redis-batch-del/" class="alignright next">下一页<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">留言</h2>
+
+  
+  	 <div class="ds-thread" data-thread-key="2015/08/11/mysql-index/" data-title="MySQL索引创建 删除 增加 修改命令" data-url="http://www.dnwdi.com/2015/08/11/mysql-index/"></div>  
+  
+</section>
+
+	
+	</div> <!-- col-md-9/col-md-12 -->
+	
+	
+		<div class="col-md-3"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2015-08-11 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/mysql/">mysql<span>1</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/mysql/">mysql<span>1</span></a></li> <li><a href="/tags/索引/">索引<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	
+
+</div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2015 dnwdi
+  
+      Go For IT!    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = { short_name: 'dnwdi' };
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';
+    ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+</body>
+   </html>
