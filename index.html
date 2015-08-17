@@ -123,6 +123,52 @@ var _hmt = _hmt || [];
 	<!-- display as entry -->	
 		<h3 class="title">
 			<div class="date"> 2015-08-17 </div>
+			<div class="article-title"><a href="/2015/08/17/python-func/" >Python特殊语法：filter、map、reduce、lambda</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <p>Python内置了一些非常有趣但非常有用的函数，充分体现了Python的语言魅力！</p>
+<p><strong>filter(function, sequence)</strong>：对sequence中的item依次执行function(item)，将执行结果为True的item组成一个List/String/Tuple（取决于sequence的类型）返回：</p>
+<pre><code><span class="prompt">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(x)</span>:</span> <span class="keyword">return</span> x % <span class="number">2</span> != <span class="number">0</span> <span class="keyword">and</span> x % <span class="number">3</span> != <span class="number">0</span> 
+<span class="prompt">&gt;&gt;&gt; </span>filter(f, range(<span class="number">2</span>, <span class="number">25</span>)) 
+[<span class="number">5</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">17</span>, <span class="number">19</span>, <span class="number">23</span>]
+<span class="prompt">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(x)</span>:</span> <span class="keyword">return</span> x != <span class="string">'a'</span> 
+<span class="prompt">&gt;&gt;&gt; </span>filter(f, <span class="string">"abcdef"</span>) 
+<span class="string">'bcdef'</span>
+</code></pre><p><strong>map(function, sequence)</strong> ：对sequence中的item依次执行function(item)，见执行结果组成一个List返回：</p>
+<pre><code><span class="prompt">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">cube</span><span class="params">(x)</span>:</span> <span class="keyword">return</span> x*x*x 
+<span class="prompt">&gt;&gt;&gt; </span>map(cube, range(<span class="number">1</span>, <span class="number">11</span>)) 
+[<span class="number">1</span>, <span class="number">8</span>, <span class="number">27</span>, <span class="number">64</span>, <span class="number">125</span>, <span class="number">216</span>, <span class="number">343</span>, <span class="number">512</span>, <span class="number">729</span>, <span class="number">1000</span>]
+<span class="prompt">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">cube</span><span class="params">(x)</span> :</span> <span class="keyword">return</span> x + x 
+<span class="prompt">... </span>
+<span class="prompt">&gt;&gt;&gt; </span>map(cube , <span class="string">"abcde"</span>) 
+[<span class="string">'aa'</span>, <span class="string">'bb'</span>, <span class="string">'cc'</span>, <span class="string">'dd'</span>, <span class="string">'ee'</span>]
+另外map也支持多个sequence，这就要求function也支持相应数量的参数输入：
+<span class="prompt">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(x, y)</span>:</span> <span class="keyword">return</span> x+y 
+<span class="prompt">&gt;&gt;&gt; </span>map(add, range(<span class="number">8</span>), range(<span class="number">8</span>)) 
+[<span class="number">0</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">10</span>, <span class="number">12</span>, <span class="number">14</span>]
+</code></pre>
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/08/17/python-func/#more" class="btn btn-default more">阅读此文</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2015-08-17 </div>
 			<div class="article-title"><a href="/2015/08/17/git-branch/" >git之分支操作</a></div>						
 		</h3>
 	
@@ -470,6 +516,8 @@ It <span class="keyword">is</span> possible <span class="keyword">to</span> spec
 		
 			<li><a href="/categories/mysql/">mysql<span>2</span></a></li>
 		
+			<li><a href="/categories/python/">python<span>1</span></a></li>
+		
 			<li><a href="/categories/redis/">redis<span>2</span></a></li>
 		
 		</ul>
@@ -481,6 +529,14 @@ It <span class="keyword">is</span> possible <span class="keyword">to</span> spec
 		<h4>标签云</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
+			<li><a href="/tags/branch/">branch<span>1</span></a></li>
+		
+			<li><a href="/tags/python/">python<span>1</span></a></li>
+		
+			<li><a href="/tags/hexo/">hexo<span>1</span></a></li>
+		
+			<li><a href="/tags/lambda/">lambda<span>1</span></a></li>
+		
 			<li><a href="/tags/index/">index<span>1</span></a></li>
 		
 			<li><a href="/tags/redis/">redis<span>2</span></a></li>
@@ -488,10 +544,6 @@ It <span class="keyword">is</span> possible <span class="keyword">to</span> spec
 			<li><a href="/tags/git/">git<span>1</span></a></li>
 		
 			<li><a href="/tags/mysql/">mysql<span>2</span></a></li>
-		
-			<li><a href="/tags/branch/">branch<span>1</span></a></li>
-		
-			<li><a href="/tags/hexo/">hexo<span>1</span></a></li>
 		
 		 
 		</ul>
@@ -503,6 +555,10 @@ It <span class="keyword">is</span> possible <span class="keyword">to</span> spec
 <div class="widget">
   <h4>最新文章</h4>
   <ul class="entry list-unstyled">
+    
+      <li>
+        <a href="/2015/08/17/python-func/" ><i class="fa fa-file-o"></i>Python特殊语法：filter、map、reduc...</a>
+      </li>
     
       <li>
         <a href="/2015/08/17/git-branch/" ><i class="fa fa-file-o"></i>git之分支操作...</a>
@@ -518,10 +574,6 @@ It <span class="keyword">is</span> possible <span class="keyword">to</span> spec
     
       <li>
         <a href="/2015/08/11/redis-batch-del/" ><i class="fa fa-file-o"></i>批量删除Redis的key...</a>
-      </li>
-    
-      <li>
-        <a href="/2015/08/11/redis-error/" ><i class="fa fa-file-o"></i>redis_error:Operation again...</a>
       </li>
     
   </ul>
