@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.dnwdi.com/2015/08/07/blog-with-hexo/</loc>
+    <lastmod>2015-08-17T15:26:29.701Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.dnwdi.com/2015/08/17/python-func/</loc>
     <lastmod>2015-08-17T10:15:30.460Z</lastmod>
   </url>
@@ -29,11 +34,6 @@
   <url>
     <loc>http://www.dnwdi.com/2015/08/11/redis-batch-del/</loc>
     <lastmod>2015-08-11T06:07:09.720Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.dnwdi.com/2015/08/07/blog-with-hexo/</loc>
-    <lastmod>2015-08-07T07:12:43.263Z</lastmod>
   </url>
   
   <url>
