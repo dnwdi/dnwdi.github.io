@@ -122,6 +122,42 @@ var _hmt = _hmt || [];
 	
 	<!-- display as entry -->	
 		<h3 class="title">
+			<div class="date"> 2015-08-17 </div>
+			<div class="article-title"><a href="/2015/08/17/sql-join/" >sql之left join、right join、inner join的区别</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <p><strong>left join(左联接) 返回包括左表中的所有记录和右表中联结字段相等的记录</strong> </p>
+<p><strong>right join(右联接) 返回包括右表中的所有记录和左表中联结字段相等的记录</strong></p>
+<p><strong>inner join(等值连接) 只返回两个表中联结字段相等的行</strong></p>
+<p>举例如下： </p>
+<p>表A记录如下：<br>aID　　　　　aNum<br>1　　　　　a20050111<br>2　　　　　a20050112<br>3　　　　　a20050113<br>4　　　　　a20050114<br>5　　　　　a20050115</p>
+<p>表B记录如下:<br>bID　　　　　bName<br>1　　　　　2006032401<br>2　　　　　2006032402<br>3　　　　　2006032403<br>4　　　　　2006032404<br>8　　　　　2006032408</p>
+<p>1.left join<br>sql语句如下: </p>
+<pre><code><span class="keyword">select</span> * <span class="keyword">from</span> A
+left <span class="keyword">join</span> B 
+<span class="keyword">on</span> A.aID = B.bID
+</code></pre>
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/08/17/sql-join/#more" class="btn btn-default more">阅读此文</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
 			<div class="date"> 2015-08-11 </div>
 			<div class="article-title"><a href="/2015/08/11/mysql-index/" >MySQL索引创建 删除 增加 修改命令</a></div>						
 		</h3>
@@ -391,7 +427,7 @@ It <span class="keyword">is</span> possible <span class="keyword">to</span> spec
 		
 			<li><a href="/categories/hexo/">hexo<span>1</span></a></li>
 		
-			<li><a href="/categories/mysql/">mysql<span>1</span></a></li>
+			<li><a href="/categories/mysql/">mysql<span>2</span></a></li>
 		
 			<li><a href="/categories/redis/">redis<span>2</span></a></li>
 		
@@ -406,11 +442,11 @@ It <span class="keyword">is</span> possible <span class="keyword">to</span> spec
 		
 			<li><a href="/tags/hexo/">hexo<span>1</span></a></li>
 		
+			<li><a href="/tags/mysql/">mysql<span>2</span></a></li>
+		
+			<li><a href="/tags/index/">index<span>1</span></a></li>
+		
 			<li><a href="/tags/redis/">redis<span>2</span></a></li>
-		
-			<li><a href="/tags/mysql/">mysql<span>1</span></a></li>
-		
-			<li><a href="/tags/索引/">索引<span>1</span></a></li>
 		
 		 
 		</ul>
@@ -422,6 +458,10 @@ It <span class="keyword">is</span> possible <span class="keyword">to</span> spec
 <div class="widget">
   <h4>最新文章</h4>
   <ul class="entry list-unstyled">
+    
+      <li>
+        <a href="/2015/08/17/sql-join/" ><i class="fa fa-file-o"></i>sql之left join、right join、in...</a>
+      </li>
     
       <li>
         <a href="/2015/08/11/mysql-index/" ><i class="fa fa-file-o"></i>MySQL索引创建 删除 增加 修改命令...</a>
@@ -437,10 +477,6 @@ It <span class="keyword">is</span> possible <span class="keyword">to</span> spec
     
       <li>
         <a href="/2015/08/07/blog-with-hexo/" ><i class="fa fa-file-o"></i>Windows下搭建Github Blog...</a>
-      </li>
-    
-      <li>
-        <a href="/2015/08/06/test/" ><i class="fa fa-file-o"></i>这是一篇测试文章...</a>
       </li>
     
   </ul>

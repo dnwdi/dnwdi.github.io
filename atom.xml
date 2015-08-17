@@ -5,7 +5,7 @@
   <subtitle><![CDATA[言胜于行]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://www.dnwdi.com//"/>
-  <updated>2015-08-11T12:46:21.181Z</updated>
+  <updated>2015-08-17T08:54:42.757Z</updated>
   <id>http://www.dnwdi.com//</id>
   
   <author>
@@ -16,11 +16,67 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[sql之left join、right join、inner join的区别]]></title>
+    <link href="http://www.dnwdi.com/2015/08/17/sql-join/"/>
+    <id>http://www.dnwdi.com/2015/08/17/sql-join/</id>
+    <published>2015-08-17T08:52:16.000Z</published>
+    <updated>2015-08-17T08:54:42.757Z</updated>
+    <content type="html"><![CDATA[<p><strong>left join(左联接) 返回包括左表中的所有记录和右表中联结字段相等的记录</strong> </p>
+<p><strong>right join(右联接) 返回包括右表中的所有记录和左表中联结字段相等的记录</strong></p>
+<p><strong>inner join(等值连接) 只返回两个表中联结字段相等的行</strong></p>
+<p>举例如下： </p>
+<p>表A记录如下：<br>aID　　　　　aNum<br>1　　　　　a20050111<br>2　　　　　a20050112<br>3　　　　　a20050113<br>4　　　　　a20050114<br>5　　　　　a20050115</p>
+<p>表B记录如下:<br>bID　　　　　bName<br>1　　　　　2006032401<br>2　　　　　2006032402<br>3　　　　　2006032403<br>4　　　　　2006032404<br>8　　　　　2006032408</p>
+<p>1.left join<br>sql语句如下: </p>
+<pre><code><span class="keyword">select</span> * <span class="keyword">from</span> A
+left <span class="keyword">join</span> B 
+<span class="keyword">on</span> A.aID = B.bID
+</code></pre><a id="more"></a>    
+<p>结果如下:<br>aID　　　　　aNum　　　　　bID　　　　　bName<br>1　　　　　a20050111　　　　1　　　　　2006032401<br>2　　　　　a20050112　　　　2　　　　　2006032402<br>3　　　　　a20050113　　　　3　　　　　2006032403<br>4　　　　　a20050114　　　　4　　　　　2006032404<br>5　　　　　a20050115　　　　NULL　　　　　NULL</p>
+<p>（所影响的行数为 5 行）<br>结果说明:<br>left join是以A表的记录为基础的,A可以看成左表,B可以看成右表,left join是以左表为准的.<br>换句话说,左表(A)的记录将会全部表示出来,而右表(B)只会显示符合搜索条件的记录(例子中为: A.aID = B.bID).<br>B表记录不足的地方均为NULL.</p>
+<p>2.right join<br>sql语句如下: </p>
+<pre><code>select * <span class="built_in">from</span> A
+<span class="constant">right</span> join B 
+<span class="command"><span class="keyword">on</span> <span class="title">A</span>.<span class="title">aID</span> = <span class="title">B</span>.<span class="title">bID</span></span>
+</code></pre><p>结果如下:<br>aID　　　　　aNum　　　　　bID　　　　　bName<br>1　　　　　a20050111　　　　1　　　　　2006032401<br>2　　　　　a20050112　　　　2　　　　　2006032402<br>3　　　　　a20050113　　　　3　　　　　2006032403<br>4　　　　　a20050114　　　　4　　　　　2006032404<br>NULL　　　　　NULL　　　　　8　　　　　2006032408</p>
+<p>（所影响的行数为 5 行）<br>结果说明:<br>仔细观察一下,就会发现,和left join的结果刚好相反,这次是以右表(B)为基础的,A表不足的地方用NULL填充.</p>
+<p>3.inner join<br>sql语句如下: </p>
+<pre><code>select * <span class="keyword">from</span> A
+innerjoin B 
+<span class="function_start"><span class="keyword">on</span></span> A.aID = B.bID
+</code></pre><p>结果如下:<br>aID　　　　　aNum　　　　　bID　　　　　bName<br>1　　　　　a20050111　　　　1　　　　　2006032401<br>2　　　　　a20050112　　　　2　　　　　2006032402<br>3　　　　　a20050113　　　　3　　　　　2006032403<br>4　　　　　a20050114　　　　4　　　　　2006032404</p>
+<p>结果说明:<br>很明显,这里只显示出了 A.aID = B.bID的记录.这说明inner join并不以谁为基础,它只显示符合条件的记录.</p>
+<p>注:<br>LEFT JOIN操作用于在任何的 FROM 子句中，组合来源表的记录。使用 LEFT JOIN 运算来创建一个左边外部联接。左边外部联接将包含了从第一个（左边）开始的两个表中的全部记录，即使在第二个（右边）表中并没有相符值的记录。</p>
+<p>语法：FROM table1 LEFT JOIN table2 ON table1.field1 compopr table2.field2</p>
+<p>说明：table1, table2参数用于指定要将记录组合的表的名称。<br>field1, field2参数指定被联接的字段的名称。且这些字段必须有相同的数据类型及包含相同类型的数据，但它们不需要有相同的名称。<br>compopr参数指定关系比较运算符：”=”， “&lt;”， “&gt;”， “&lt;=”， “&gt;=” 或 “&lt;&gt;”。<br>如果在INNER JOIN操作中要联接包含Memo 数据类型或 OLE Object 数据类型数据的字段，将会发生错误. </p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><strong>left join(左联接) 返回包括左表中的所有记录和右表中联结字段相等的记录</strong> </p>
+<p><strong>right join(右联接) 返回包括右表中的所有记录和左表中联结字段相等的记录</strong></p>
+<p><strong>inner join(等值连接) 只返回两个表中联结字段相等的行</strong></p>
+<p>举例如下： </p>
+<p>表A记录如下：<br>aID　　　　　aNum<br>1　　　　　a20050111<br>2　　　　　a20050112<br>3　　　　　a20050113<br>4　　　　　a20050114<br>5　　　　　a20050115</p>
+<p>表B记录如下:<br>bID　　　　　bName<br>1　　　　　2006032401<br>2　　　　　2006032402<br>3　　　　　2006032403<br>4　　　　　2006032404<br>8　　　　　2006032408</p>
+<p>1.left join<br>sql语句如下: </p>
+<pre><code><span class="keyword">select</span> * <span class="keyword">from</span> A
+left <span class="keyword">join</span> B 
+<span class="keyword">on</span> A.aID = B.bID
+</code></pre>]]>
+    
+    </summary>
+    
+      <category term="mysql" scheme="http://www.dnwdi.com/tags/mysql/"/>
+    
+      <category term="mysql" scheme="http://www.dnwdi.com/categories/mysql/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[MySQL索引创建 删除 增加 修改命令]]></title>
     <link href="http://www.dnwdi.com/2015/08/11/mysql-index/"/>
     <id>http://www.dnwdi.com/2015/08/11/mysql-index/</id>
     <published>2015-08-11T10:37:36.000Z</published>
-    <updated>2015-08-11T12:46:21.181Z</updated>
+    <updated>2015-08-17T08:55:47.982Z</updated>
     <content type="html"><![CDATA[<p>在mysql中索引是我们对数据库进行优化的一个很好的功能，下面我来给大家介绍mysql 索引的创建 删除 增加 修改方法，希望些教程对各位朋友有所帮助。</p>
 <p><strong>CREATE命令创建唯一索引：</strong><br>可以创建一个唯一索引的表。唯一的索引意味着两个行不能拥有相同的索引值。这里是语法来创建索引的表</p>
 <pre><code><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> index_name
@@ -76,9 +132,9 @@
     
     </summary>
     
-      <category term="mysql" scheme="http://www.dnwdi.com/tags/mysql/"/>
+      <category term="index" scheme="http://www.dnwdi.com/tags/index/"/>
     
-      <category term="索引" scheme="http://www.dnwdi.com/tags/%E7%B4%A2%E5%BC%95/"/>
+      <category term="mysql" scheme="http://www.dnwdi.com/tags/mysql/"/>
     
       <category term="mysql" scheme="http://www.dnwdi.com/categories/mysql/"/>
     
