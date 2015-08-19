@@ -5,7 +5,7 @@
   <subtitle><![CDATA[言胜于行]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://www.dnwdi.com//"/>
-  <updated>2015-08-17T10:15:30.460Z</updated>
+  <updated>2015-08-19T06:14:56.468Z</updated>
   <id>http://www.dnwdi.com//</id>
   
   <author>
@@ -14,6 +14,39 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Lesson1]]></title>
+    <link href="http://www.dnwdi.com/2015/08/19/life-lesson1/"/>
+    <id>http://www.dnwdi.com/2015/08/19/life-lesson1/</id>
+    <published>2015-08-19T06:14:21.000Z</published>
+    <updated>2015-08-19T06:14:56.468Z</updated>
+    <content type="html"><![CDATA[<p><strong>永远不用相信别人的代码</strong>，即使作者本人坚持某个观点。原因：</p>
+<ol>
+<li><p>作者的观点你理解有误</p>
+</li>
+<li><p>作者都未意识到潜在的问题</p>
+</li>
+</ol>
+<p>认真思考每行代码，自己的，别人的，And</p>
+<pre><code><span class="title">Doubt</span> Everthing
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<p><strong>永远不用相信别人的代码</strong>，即使作者本人坚持某个观点。原因：</p>
+<ol>
+<li><p>作者的观点你理解有误</p>
+</li>
+<li><p>作者都未意识到潜在的问题</p>
+</li>
+</ol>
+<p>认真思考每行代码，自己的，别人]]>
+    </summary>
+    
+      <category term="life" scheme="http://www.dnwdi.com/tags/life/"/>
+    
+      <category term="life" scheme="http://www.dnwdi.com/categories/life/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Python特殊语法：filter、map、reduce、lambda]]></title>
