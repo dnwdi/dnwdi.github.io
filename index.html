@@ -123,6 +123,82 @@ var _hmt = _hmt || [];
 	<!-- display as entry -->	
 		<h3 class="title">
 			<div class="date"> 2015-08-19 </div>
+			<div class="article-title"><a href="/2015/08/19/python-yield/" >Python之yield</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <p>yield的英文单词意思是生产，刚接触Python的时候感到非常困惑，一直没弄明白yield的用法。<br>只知道利用yield产生数据的函数叫<strong>生成器</strong>，用yield接收数据的函数叫<strong>协程</strong>。。。<br>比如下面的例子：</p>
+<pre><code><span class="function"><span class="keyword">def</span> <span class="title">addlist</span><span class="params">(alist)</span>:</span>
+    <span class="keyword">for</span> i <span class="keyword">in</span> alist:
+        <span class="keyword">yield</span> i + <span class="number">1</span>
+</code></pre><p>取出alist的每一项，然后把i + 1塞进去。然后通过调用取出每一项：</p>
+<pre><code>alist = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]
+<span class="function"><span class="keyword">for</span> x in <span class="title">addlist</span><span class="params">(alist)</span>:
+    print x,</span>
+</code></pre><ol>
+<li><p>包含yield的函数<br>假如你看到某个函数包含了yield，这意味着这个函数已经是一个Generator，它的执行会和其他普通的函数有很多不同。比如下面的简单的函数：</p>
+<p> def h():</p>
+<pre><code><span class="keyword">print</span> <span class="string">'To be brave'</span>
+<span class="keyword">yield</span> <span class="number">5</span>
+</code></pre><p> h()</p>
+</li>
+</ol>
+<p>可以看到，调用h()之后，print 语句并没有执行！这就是yield，那么，如何让print 语句执行呢？这就是后面要讨论的问题，通过后面的讨论和学习，就会明白yield的工作原理了。<br>
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/08/19/python-yield/#more" class="btn btn-default more">阅读此文</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2015-08-19 </div>
+			<div class="article-title"><a href="/2015/08/19/python-file/" >Python之file</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <p>一. python打开文件代码如下：</p>
+<p>f = open(“d:\test.txt”, “w”)<br>说明：<br>第一个参数是文件名称，包括路径；<br>第二个参数是打开的模式mode</p>
+<p>‘r’：只读（缺省。如果文件不存在，则抛出错误）<br>‘w’：只写（如果文件不存在，则自动创建文件）<br>‘a’：附加到文件末尾<br>‘r+’：读写<br>如果需要以二进制方式打开文件，需要在mode后面加上字符”b”，比如”rb””wb”等</p>
+<p>二、python读取文件内容f.read(size)</p>
+<p>参数size表示读取的数量，可以省略。如果省略size参数，则表示读取文件所有内容。</p>
+<p>f.readline()读取文件一行的内容 f.readlines()读取所有的行到数组里面[line1,line2,…lineN]。</p>
+<p>在避免将所有文件内容加载到内存中，这种方法常常使用，便于提高效率。</p>
+<p>三、python写入文件f.write(string)</p>
+<p>将一个字符串写入文件，如果写入结束，必须在字符串后面加上”\n”，然后f.close()关闭文件</p>
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/08/19/python-file/#more" class="btn btn-default more">阅读此文</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2015-08-19 </div>
 			<div class="article-title"><a href="/2015/08/19/life-lesson1/" >Lesson1</a></div>						
 		</h3>
 	
@@ -441,74 +517,6 @@ It <span class="keyword">is</span> possible <span class="keyword">to</span> spec
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2015-08-06 </div>
-			<div class="article-title"><a href="/2015/08/06/test/" >这是一篇测试文章</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-  
-	<div class="col-md-12">
-	  
-	
-	  <h1 id="我的博客正式开通啦！">我的博客正式开通啦！</h1><p><img src="http://7xkx7i.com1.z0.glb.clouddn.com/222211817.jpg" alt="此处输入图片的描述"></p>
-<pre><code>public <span class="value">static</span> void <span class="function">main</span>(String<span class="attr_selector">[]</span> args){
-    <span class="function">while</span>(<span class="function">isAlive</span>()){
-        <span class="function">doStudy</span>();
-    }
-}
-</code></pre><p><a href="http://dnwdi.github.io" target="_blank" rel="external">我的博客地址</a></p>
-
-	
-	</div>
-	
-  
-</div>
-	<a type="button" href="/2015/08/06/test/#more" class="btn btn-default more">阅读此文</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2015-08-06 </div>
-			<div class="article-title"><a href="/2015/08/06/hello-world/" >Hello World</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-  
-	<div class="col-md-12">
-	  
-	
-	  <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-	
-	</div>
-	
-  
-</div>
-	<a type="button" href="/2015/08/06/hello-world/#more" class="btn btn-default more">阅读此文</a>
-</div>
-
-		
 
 		</div>
 
@@ -518,6 +526,16 @@ It <span class="keyword">is</span> possible <span class="keyword">to</span> spec
 		<div class="pagination">
 <ul class="pagination">
 	 
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>上一页</a></li>
+        
+
+        <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+
+		
+		   <li class="next"> <a href="/page/2/" class="alignright next">下一页<i class="fa fa-arrow-circle-o-right"></i></a> </li>          
+        
+	
 </ul>
 </div>
 
@@ -553,7 +571,7 @@ It <span class="keyword">is</span> possible <span class="keyword">to</span> spec
 		
 			<li><a href="/categories/mysql/">mysql<span>2</span></a></li>
 		
-			<li><a href="/categories/python/">python<span>1</span></a></li>
+			<li><a href="/categories/python/">python<span>3</span></a></li>
 		
 			<li><a href="/categories/redis/">redis<span>2</span></a></li>
 		
@@ -566,23 +584,27 @@ It <span class="keyword">is</span> possible <span class="keyword">to</span> spec
 		<h4>标签云</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/python/">python<span>1</span></a></li>
-		
 			<li><a href="/tags/hexo/">hexo<span>1</span></a></li>
 		
-			<li><a href="/tags/index/">index<span>1</span></a></li>
-		
-			<li><a href="/tags/branch/">branch<span>1</span></a></li>
+			<li><a href="/tags/yield/">yield<span>1</span></a></li>
 		
 			<li><a href="/tags/mysql/">mysql<span>2</span></a></li>
 		
-			<li><a href="/tags/lambda/">lambda<span>1</span></a></li>
+			<li><a href="/tags/python/">python<span>3</span></a></li>
+		
+			<li><a href="/tags/git/">git<span>1</span></a></li>
 		
 			<li><a href="/tags/life/">life<span>1</span></a></li>
 		
+			<li><a href="/tags/lambda/">lambda<span>1</span></a></li>
+		
 			<li><a href="/tags/redis/">redis<span>2</span></a></li>
 		
-			<li><a href="/tags/git/">git<span>1</span></a></li>
+			<li><a href="/tags/branch/">branch<span>1</span></a></li>
+		
+			<li><a href="/tags/index/">index<span>1</span></a></li>
+		
+			<li><a href="/tags/file/">file<span>1</span></a></li>
 		
 		 
 		</ul>
@@ -596,6 +618,14 @@ It <span class="keyword">is</span> possible <span class="keyword">to</span> spec
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2015/08/19/python-yield/" ><i class="fa fa-file-o"></i>Python之yield...</a>
+      </li>
+    
+      <li>
+        <a href="/2015/08/19/python-file/" ><i class="fa fa-file-o"></i>Python之file...</a>
+      </li>
+    
+      <li>
         <a href="/2015/08/19/life-lesson1/" ><i class="fa fa-file-o"></i>Lesson1...</a>
       </li>
     
@@ -605,14 +635,6 @@ It <span class="keyword">is</span> possible <span class="keyword">to</span> spec
     
       <li>
         <a href="/2015/08/17/git-branch/" ><i class="fa fa-file-o"></i>git之分支操作...</a>
-      </li>
-    
-      <li>
-        <a href="/2015/08/17/sql-join/" ><i class="fa fa-file-o"></i>sql之left join、right join、in...</a>
-      </li>
-    
-      <li>
-        <a href="/2015/08/11/mysql-index/" ><i class="fa fa-file-o"></i>MySQL索引创建 删除 增加 修改命令...</a>
       </li>
     
   </ul>
