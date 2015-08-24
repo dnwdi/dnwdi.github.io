@@ -120,93 +120,41 @@ var _hmt = _hmt || [];
 
 	<!-- content -->
 	<div class="mypage">		
-	    <p>yield的英文单词意思是生产，刚接触Python的时候感到非常困惑，一直没弄明白yield的用法。<br>只知道利用yield产生数据的函数叫<strong>生成器</strong>，用yield接收数据的函数叫<strong>协程</strong>。。。<br>比如下面的例子：</p>
-<pre><code><span class="function"><span class="keyword">def</span> <span class="title">addlist</span><span class="params">(alist)</span>:</span>
-    <span class="keyword">for</span> i <span class="keyword">in</span> alist:
-        <span class="keyword">yield</span> i + <span class="number">1</span>
-</code></pre><p>取出alist的每一项，然后把i + 1塞进去。然后通过调用取出每一项：</p>
-<pre><code>alist = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]
-<span class="function"><span class="keyword">for</span> x in <span class="title">addlist</span><span class="params">(alist)</span>:
-    print x,</span>
-</code></pre><ol>
-<li><p>包含yield的函数<br>假如你看到某个函数包含了yield，这意味着这个函数已经是一个Generator，它的执行会和其他普通的函数有很多不同。比如下面的简单的函数：</p>
-<p> def h():</p>
-<pre><code><span class="keyword">print</span> <span class="string">'To be brave'</span>
-<span class="keyword">yield</span> <span class="number">5</span>
-</code></pre><p> h()</p>
+	    <p>yield的英文单词意思是生产，刚接触Python的时候感到非常困惑，一直没弄明白yield的用法。<br>只知道利用yield产生数据的函数叫<strong>生成器</strong>，用yield接收数据的函数叫<strong>协程</strong>。。。<br>比如下面的例子：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">addlist</span><span class="params">(alist)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> alist:</span><br><span class="line">        <span class="keyword">yield</span> i + <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p>取出alist的每一项，然后把i + 1塞进去。然后通过调用取出每一项：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">alist = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"><span class="function"><span class="keyword">for</span> x in <span class="title">addlist</span><span class="params">(alist)</span>:</span><br><span class="line">    print x,</span></span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>包含yield的函数<br>假如你看到某个函数包含了yield，这意味着这个函数已经是一个Generator，它的执行会和其他普通的函数有很多不同。比如下面的简单的函数：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">h</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'To be brave'</span></span><br><span class="line">    <span class="keyword">yield</span> <span class="number">5</span></span><br><span class="line"></span><br><span class="line">h()</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>可以看到，调用h()之后，print 语句并没有执行！这就是yield，那么，如何让print 语句执行呢？这就是后面要讨论的问题，通过后面的讨论和学习，就会明白yield的工作原理了。<br><a id="more"></a></p>
 <ol>
-<li><p>yield是一个表达式<br>Python2.5以前，yield是一个语句，但现在2.5之后，yield是一个表达式(Expression)，比如：</p>
-<p> m = yield 5</p>
+<li>yield是一个表达式<br>Python2.5以前，yield是一个语句，但现在2.5之后，yield是一个表达式(Expression)，比如：<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">m = <span class="keyword">yield </span><span class="number">5</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>表达式(yield 5)的返回值将赋值给m，所以，认为 m = 5 是错误的。那么如何获取(yield 5)的返回值呢？需要用到后面要介绍的send(msg)方法。</p>
 <ol>
-<li><p>透过next()语句看原理<br>现在，我们来揭晓yield的工作原理。我们知道，我们上面的h()被调用后并没有执行，因为它有yield表达式，因此，我们通过next()语句让它执行。next()语句将恢复Generator执行，并直到下一个yield表达式处。比如：</p>
-<p> def h():</p>
-<pre><code><span class="keyword">print</span> <span class="string">'Wen Chuan'</span>
-<span class="keyword">yield</span> <span class="number">5</span>
-<span class="keyword">print</span> <span class="string">'Fighting!'</span>
-</code></pre><p> c = h()<br> c.next()</p>
+<li>透过next()语句看原理<br>现在，我们来揭晓yield的工作原理。我们知道，我们上面的h()被调用后并没有执行，因为它有yield表达式，因此，我们通过next()语句让它执行。next()语句将恢复Generator执行，并直到下一个yield表达式处。比如：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">h</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Wen Chuan'</span></span><br><span class="line">    <span class="keyword">yield</span> <span class="number">5</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Fighting!'</span></span><br><span class="line"></span><br><span class="line">c = h()</span><br><span class="line">c.next()</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>c.next()调用后，h()开始执行，直到遇到yield 5，因此输出结果：</p>
-<pre><code><span class="title">Wen</span> Chuan
-</code></pre><p>当我们再次调用c.next()时，会继续执行，直到找到下一个yield表达式。由于后面没有yield了，因此会拋出异常：</p>
-<pre><code>Wen Chuan
-Fighting!
-Traceback (most recent <span class="operator"><span class="keyword">call</span> <span class="keyword">last</span>):
-  <span class="keyword">File</span> <span class="string">"/home/evergreen/Codes/yidld.py"</span>, line <span class="number">11</span>, <span class="keyword">in</span> &lt;<span class="keyword">module</span>&gt;
-    <span class="keyword">c</span>.<span class="keyword">next</span>()
-StopIteration</span>
-</code></pre><ol>
-<li><p>send(msg) 与 next()<br>了解了next()如何让包含yield的函数执行后，我们再来看另外一个非常重要的函数send(msg)。其实next()和send()在一定意义上作用是相似的，区别是send()可以传递yield表达式的值进去，而next()不能传递特定的值，只能传递None进去。因此，我们可以看做<br>c.next() 和 c.send(None) 作用是一样的。<br>来看这个例子：</p>
-<p> def h():</p>
-<pre><code><span class="keyword">print</span> <span class="string">'Wen Chuan'</span>,
-m = <span class="keyword">yield</span> <span class="number">5</span>  <span class="comment"># Fighting!</span>
-<span class="keyword">print</span> m
-d = <span class="keyword">yield</span> <span class="number">12</span>
-<span class="keyword">print</span> <span class="string">'We are together!'</span>
-</code></pre><p> c = h()<br> c.next()  #相当于c.send(None)<br> c.send(‘Fighting!’)  #(yield 5)表达式被赋予了’Fighting!’</p>
-</li>
-</ol>
-<p>输出的结果为：</p>
-<pre><code><span class="variable">Wen</span> <span class="variable">Chuan</span> <span class="variable">Fighting</span><span class="exclamation_mark">!</span>
-</code></pre><p>需要提醒的是，第一次调用时，请使用next()语句或是send(None)，不能使用send发送一个非None的值，否则会出错的，因为没有yield语句来接收这个值。</p>
+<p>c.next()调用后，h()开始执行，直到遇到yield 5，因此输出结果：<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">Wen</span> Chuan</span><br></pre></td></tr></table></figure></p>
+<p>当我们再次调用c.next()时，会继续执行，直到找到下一个yield表达式。由于后面没有yield了，因此会拋出异常：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Wen Chuan</span><br><span class="line">Fighting!</span><br><span class="line">Traceback (most recent <span class="operator"><span class="keyword">call</span> <span class="keyword">last</span>):</span><br><span class="line">  <span class="keyword">File</span> <span class="string">"/home/evergreen/Codes/yidld.py"</span>, line <span class="number">11</span>, <span class="keyword">in</span> &lt;<span class="keyword">module</span>&gt;</span><br><span class="line">    <span class="keyword">c</span>.<span class="keyword">next</span>()</span><br><span class="line">StopIteration</span></span><br></pre></td></tr></table></figure></p>
 <ol>
-<li><p>send(msg) 与 next()的返回值<br><strong>send(msg) 和 next()是有返回值的，它们的返回值很特殊，返回的是下一个yield表达式的参数</strong>。比如yield 5，则返回 5 。到这里，是不是明白了一些什么东西？本文第一个例子中，通过for i in alist 遍历 Generator，其实是每次都调用了alist.Next()，而每次alist.Next()的返回值正是yield的参数，即我们开始认为被压进去的东东。我们再延续上面的例子：</p>
-<p> def h():</p>
-<pre><code><span class="keyword">print</span> <span class="string">'Wen Chuan'</span>,
-m = <span class="keyword">yield</span> <span class="number">5</span>  <span class="comment"># Fighting!</span>
-<span class="keyword">print</span> m
-d = <span class="keyword">yield</span> <span class="number">12</span>
-<span class="keyword">print</span> <span class="string">'We are together!'</span>
-</code></pre><p> c = h()<br> m = c.next()  #m 获取了yield 5 的参数值 5<br> d = c.send(‘Fighting!’)  #d 获取了yield 12 的参数值12<br> print ‘We will never forget the date’, m, ‘.’, d</p>
+<li>send(msg) 与 next()<br>了解了next()如何让包含yield的函数执行后，我们再来看另外一个非常重要的函数send(msg)。其实next()和send()在一定意义上作用是相似的，区别是send()可以传递yield表达式的值进去，而next()不能传递特定的值，只能传递None进去。因此，我们可以看做<br>c.next() 和 c.send(None) 作用是一样的。<br>来看这个例子：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">h</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Wen Chuan'</span>,</span><br><span class="line">    m = <span class="keyword">yield</span> <span class="number">5</span>  <span class="comment"># Fighting!</span></span><br><span class="line">    <span class="keyword">print</span> m</span><br><span class="line">    d = <span class="keyword">yield</span> <span class="number">12</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'We are together!'</span></span><br><span class="line"></span><br><span class="line">c = h()</span><br><span class="line">c.next()  <span class="comment">#相当于c.send(None)</span></span><br><span class="line">c.send(<span class="string">'Fighting!'</span>)  <span class="comment">#(yield 5)表达式被赋予了'Fighting!'</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>输出结果：</p>
-<pre><code>Wen Chuan Fighting!
-We will never forget the date <span class="number">5</span> . <span class="number">12</span>
-</code></pre><ol>
-<li><p>throw() 与 close()中断 Generator<br>中断Generator是一个非常灵活的技巧，可以通过throw抛出一个GeneratorExit异常来终止Generator。Close()方法作用是一样的，其实内部它是调用了throw(GeneratorExit)的。我们看：</p>
-<p> def close(self):</p>
-<pre><code>try:
-    self.<span class="function"><span class="title">throw</span><span class="params">(GeneratorExit)</span></span>
-except (GeneratorExit, StopIteration):
-    pass
-<span class="keyword">else</span>:
-    raise <span class="function"><span class="title">RuntimeError</span><span class="params">(<span class="string">"generator ignored GeneratorExit"</span>)</span></span>
-</code></pre><p> #Other exceptions are not caught</p>
+<p>输出的结果为：<br><figure class="highlight erlang-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">Wen</span> <span class="variable">Chuan</span> <span class="variable">Fighting</span><span class="exclamation_mark">!</span></span><br></pre></td></tr></table></figure></p>
+<p>需要提醒的是，第一次调用时，请使用next()语句或是send(None)，不能使用send发送一个非None的值，否则会出错的，因为没有yield语句来接收这个值。</p>
+<ol>
+<li>send(msg) 与 next()的返回值<br><strong>send(msg) 和 next()是有返回值的，它们的返回值很特殊，返回的是下一个yield表达式的参数</strong>。比如yield 5，则返回 5 。到这里，是不是明白了一些什么东西？本文第一个例子中，通过for i in alist 遍历 Generator，其实是每次都调用了alist.Next()，而每次alist.Next()的返回值正是yield的参数，即我们开始认为被压进去的东东。我们再延续上面的例子：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">h</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Wen Chuan'</span>,</span><br><span class="line">    m = <span class="keyword">yield</span> <span class="number">5</span>  <span class="comment"># Fighting!</span></span><br><span class="line">    <span class="keyword">print</span> m</span><br><span class="line">    d = <span class="keyword">yield</span> <span class="number">12</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'We are together!'</span></span><br><span class="line"></span><br><span class="line">c = h()</span><br><span class="line">m = c.next()  <span class="comment">#m 获取了yield 5 的参数值 5</span></span><br><span class="line">d = c.send(<span class="string">'Fighting!'</span>)  <span class="comment">#d 获取了yield 12 的参数值12</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">'We will never forget the date'</span>, m, <span class="string">'.'</span>, d</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>因此，当我们调用了close()方法后，再调用next()或是send(msg)的话会抛出一个异常：</p>
-<pre><code>Traceback (most recent <span class="operator"><span class="keyword">call</span> <span class="keyword">last</span>):
-  <span class="keyword">File</span> <span class="string">"/home/evergreen/Codes/yidld.py"</span>, line <span class="number">14</span>, <span class="keyword">in</span> &lt;<span class="keyword">module</span>&gt;
-    <span class="keyword">d</span> = <span class="keyword">c</span>.send(<span class="string">'Fighting!'</span>)  #<span class="keyword">d</span> 获取了yield <span class="number">12</span> 的参数值<span class="number">12</span>
-StopIteration</span>
-</code></pre>	  
+<p>输出结果：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Wen Chuan Fighting!</span><br><span class="line">We will never forget the date <span class="number">5</span> . <span class="number">12</span></span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>throw() 与 close()中断 Generator<br>中断Generator是一个非常灵活的技巧，可以通过throw抛出一个GeneratorExit异常来终止Generator。Close()方法作用是一样的，其实内部它是调用了throw(GeneratorExit)的。我们看：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">close</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        self.throw(GeneratorExit)</span><br><span class="line">    <span class="keyword">except</span> (GeneratorExit, StopIteration):</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">raise</span> RuntimeError(<span class="string">"generator ignored GeneratorExit"</span>)</span><br><span class="line"><span class="comment"># Other exceptions are not caught</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>因此，当我们调用了close()方法后，再调用next()或是send(msg)的话会抛出一个异常：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent <span class="operator"><span class="keyword">call</span> <span class="keyword">last</span>):</span><br><span class="line">  <span class="keyword">File</span> <span class="string">"/home/evergreen/Codes/yidld.py"</span>, line <span class="number">14</span>, <span class="keyword">in</span> &lt;<span class="keyword">module</span>&gt;</span><br><span class="line">    <span class="keyword">d</span> = <span class="keyword">c</span>.send(<span class="string">'Fighting!'</span>)  #<span class="keyword">d</span> 获取了yield <span class="number">12</span> 的参数值<span class="number">12</span></span><br><span class="line">StopIteration</span></span><br></pre></td></tr></table></figure></p>
+	  
 	</div>
 
 	<div>
@@ -214,9 +162,9 @@ StopIteration</span>
 	<div class="pagination">
 <ul class="pagination">
 	 
-		
-          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>上一页</a></li>
-        
+				
+    	<li class="prev"><a href="/2015/08/24/redis-pub-sub/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>上一页</a></li>
+  		
 
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
 
