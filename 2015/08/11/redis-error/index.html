@@ -126,12 +126,12 @@ var _hmt = _hmt || [];
 <p><code>ERR Operation against a key holding the wrong kind of value</code></p>
 <p>问题解决：</p>
 <p>先执行一条如下命令，usrInfo为其中的一个key值。</p>
-<pre><code>redis <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt;type usrInfo
+<pre><code>redis 127.0.0.1:6379&gt;type usrInfo
 </code></pre><p>此时会显示出该key存储在现在redis服务器中的类型，例如：</p>
-<pre><code>redis <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt;hash
+<pre><code>redis 127.0.0.1:6379&gt;hash
 </code></pre><p>则表示key为usrInfo的数据是以hash类型存储在redis服务器里的，此时操作这个数据就必须使用hset、hget等操作方法。</p>
 <p>如果是zset如下：</p>
-<pre><code>redis <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt;zset
+<pre><code>redis 127.0.0.1:6379&gt;zset
 </code></pre><p>则表示数据类型为Sorted Sets的。此时就需要使用zadd、zrange等操作方法，否则就会报ERR Operation against a key holding the wrong kind of value这个错误！</p>
 	  
 	</div>

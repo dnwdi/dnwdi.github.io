@@ -122,6 +122,98 @@ var _hmt = _hmt || [];
 	
 	<!-- display as entry -->	
 		<h3 class="title">
+			<div class="date"> 2015-12-14 </div>
+			<div class="article-title"><a href="/2015/12/14/hadoop1/" >hadoop学习笔记一</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <ol>
+<li><p>HDFS实现数据的存储，MapReduce实现数据的分析和处理。</p>
+</li>
+<li><p>传统关系数据库只更新一小部分记录时，B树更有优势；如果有大量数据更新时，MapReduce更有效率，因为需要使用 排序/合并 来重建数据库。</p>
+</li>
+<li><table><tbody><tr><td><em>区别</em></td><td><em>传统的关系数据库</em></td><td><em>MapReduce</em></td></tr><tr><td>数据大小</td><td>GB</td><td>PB</td></tr><tr><td>数据存取</td><td>交互式和批处理</td><td>批处理</td></tr><tr><td>更新</td><td>多次读/写 </td><td>一次写入，多次读取</td></tr><tr><td>结构</td><td>静态模式/结构化数据</td><td>动态模式/非结构化数据</td></tr><tr><td>完整性</td><td>高</td><td>低</td></tr><tr><td>冗余</td><td>低</td><td>高</td></tr><tr><td>横向扩展</td><td>非线性</td><td>线性的</td></tr></tbody></table>
+</li>
+<li><p>MapReduce的核心特征：数据本地化，以实现数据的快速访问。</p>
+</li>
+<li><p>MapReduce能实现失败检测：采用无共享框架，能够检测并重新执行那些失败的map或reduce任务</p>
+</li>
+<li><p>MapReduce三大设计目标：<br> a. 为只需要短短几分钟或几个小时完成的作业提供服务<br> b. 运行于同一个内部有高速网络连接的数据中心内<br> c. 数据中心内的计算机都是可靠的、定制的硬件</p>
+</li>
+</ol>
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/12/14/hadoop1/#more" class="btn btn-default more">阅读此文</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2015-12-13 </div>
+			<div class="article-title"><a href="/2015/12/13/mybatis1/" >mybatis学习笔记一</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <p>一. MyBatis特点</p>
+<ol>
+<li>MyBatis相对于Hibernate更轻量，更简单</li>
+<li>SQL语句与代码分离</li>
+<li>面向配置的编程，可维护性，可扩展性大大增强</li>
+<li>良好支持复杂数据映射</li>
+<li>动态SQL，替换拼装SQL，更安全</li>
+</ol>
+<p>二. 环境搭建</p>
+<ol>
+<li>导入Jar包</li>
+<li>配置日志文件，更改日志输出级别（Debug）</li>
+</ol>
+<p>三. MyBatis工作流程</p>
+<ol>
+<li>读取基本配置文件</li>
+<li>生成SqlSessionFactory</li>
+<li>建立SqlSession</li>
+<li>调用Mybatis提供的API</li>
+<li>查询MAP配置</li>
+<li>返回结果</li>
+<li>关闭SqlSession</li>
+</ol>
+<p>(1). 基本配置文件<br>a. 连接数据库信息 environments<br>    一个environment对应一个连接数据库信息<br>b. map文件位置 mappers</p>
+<p>(2). SqlSession<br>a. SqlSessionFactory是程序级<br>b. SqlSession是方法级</p>
+<p>(3). map文件(包含sql语句)<br>a. 相对路径引用 resource<br>b. 绝对路径引用 url<br>c. 包路径引用 package name </p>
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/12/13/mybatis1/#more" class="btn btn-default more">阅读此文</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
 			<div class="date"> 2015-08-24 </div>
 			<div class="article-title"><a href="/2015/08/24/redis-pub-sub/" >Redis之发布与订阅</a></div>						
 		</h3>
@@ -139,22 +231,22 @@ var _hmt = _hmt || [];
 </li>
 </ol>
 <p>下面是个hello,world程序:</p>
-<pre><code><span class="keyword">package</span> demo;
-<span class="keyword">import</span> org.jredis.*;
-<span class="keyword">import</span> org.jredis.ri.alphazero.JRedisClient;
-<span class="keyword">public</span> class App {
-<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) {
-    <span class="keyword">try</span> {
-             JRedis  jr = <span class="keyword">new</span> JRedisClient(<span class="string">"*.*.*.*"</span>,<span class="number">6379</span>); <span class="comment">//redis服务地址和端口号</span>
-             <span class="keyword">String</span> <span class="variable">key</span> = <span class="string">"mKey"</span>;
-             jr.<span class="built_in">set</span>(<span class="variable">key</span>, <span class="string">"hello,redis!"</span>);
-             <span class="keyword">String</span> v = <span class="keyword">new</span> <span class="keyword">String</span>(jr.<span class="built_in">get</span>(<span class="variable">key</span>));
-             <span class="keyword">String</span> k2 = <span class="string">"count"</span>;
+<pre><code>package demo;
+import org.jredis.*;
+import org.jredis.ri.alphazero.JRedisClient;
+public class App {
+public static void main(String[] args) {
+    try {
+             JRedis  jr = new JRedisClient(&quot;*.*.*.*&quot;,6379); //redis服务地址和端口号
+             String key = &quot;mKey&quot;;
+             jr.set(key, &quot;hello,redis!&quot;);
+             String v = new String(jr.get(key));
+             String k2 = &quot;count&quot;;
              jr.incr(k2);
              jr.incr(k2);
-             System.out.<span class="built_in">println</span>(v);
-             System.out.<span class="built_in">println</span>(<span class="keyword">new</span> <span class="keyword">String</span>(jr.<span class="built_in">get</span>(k2)));
-        } <span class="keyword">catch</span> (Exception e) {
+             System.out.println(v);
+             System.out.println(new String(jr.get(k2)));
+        } catch (Exception e) {
 
         }
     }
@@ -186,7 +278,7 @@ var _hmt = _hmt || [];
 	  
 	
 	  <p>yield的英文单词意思是生产，刚接触Python的时候感到非常困惑，一直没弄明白yield的用法。<br>只知道利用yield产生数据的函数叫<strong>生成器</strong>，用yield接收数据的函数叫<strong>协程</strong>。。。<br>比如下面的例子：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">addlist</span><span class="params">(alist)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> alist:</span><br><span class="line">        <span class="keyword">yield</span> i + <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
-<p>取出alist的每一项，然后把i + 1塞进去。然后通过调用取出每一项：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">alist = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"><span class="function"><span class="keyword">for</span> x in <span class="title">addlist</span><span class="params">(alist)</span>:</span><br><span class="line">    print x,</span></span><br></pre></td></tr></table></figure></p>
+<p>取出alist的每一项，然后把i + 1塞进去。然后通过调用取出每一项：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">alist = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> <span class="function"><span class="title">addlist</span><span class="params">(alist)</span></span>:</span><br><span class="line">    print x,</span><br></pre></td></tr></table></figure></p>
 <ol>
 <li>包含yield的函数<br>假如你看到某个函数包含了yield，这意味着这个函数已经是一个Generator，它的执行会和其他普通的函数有很多不同。比如下面的简单的函数：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">h</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'To be brave'</span></span><br><span class="line">    <span class="keyword">yield</span> <span class="number">5</span></span><br><span class="line"></span><br><span class="line">h()</span><br></pre></td></tr></table></figure>
 </li>
@@ -259,7 +351,7 @@ var _hmt = _hmt || [];
 </li>
 </ol>
 <p>认真思考每行代码，自己的，别人的，And</p>
-<pre><code><span class="title">Doubt</span> Everthing
+<pre><code>Doubt Everthing
 </code></pre>
 	
 	</div>
@@ -288,24 +380,24 @@ var _hmt = _hmt || [];
 	
 	  <p>Python内置了一些非常有趣但非常有用的函数，充分体现了Python的语言魅力！</p>
 <p><strong>filter(function, sequence)</strong>：对sequence中的item依次执行function(item)，将执行结果为True的item组成一个List/String/Tuple（取决于sequence的类型）返回：</p>
-<pre><code><span class="prompt">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(x)</span>:</span> <span class="keyword">return</span> x % <span class="number">2</span> != <span class="number">0</span> <span class="keyword">and</span> x % <span class="number">3</span> != <span class="number">0</span> 
-<span class="prompt">&gt;&gt;&gt; </span>filter(f, range(<span class="number">2</span>, <span class="number">25</span>)) 
-[<span class="number">5</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">17</span>, <span class="number">19</span>, <span class="number">23</span>]
-<span class="prompt">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(x)</span>:</span> <span class="keyword">return</span> x != <span class="string">'a'</span> 
-<span class="prompt">&gt;&gt;&gt; </span>filter(f, <span class="string">"abcdef"</span>) 
-<span class="string">'bcdef'</span>
+<pre><code>&gt;&gt;&gt; def f(x): return x % 2 != 0 and x % 3 != 0 
+&gt;&gt;&gt; filter(f, range(2, 25)) 
+[5, 7, 11, 13, 17, 19, 23]
+&gt;&gt;&gt; def f(x): return x != &apos;a&apos; 
+&gt;&gt;&gt; filter(f, &quot;abcdef&quot;) 
+&apos;bcdef&apos;
 </code></pre><p><strong>map(function, sequence)</strong> ：对sequence中的item依次执行function(item)，见执行结果组成一个List返回：</p>
-<pre><code><span class="prompt">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">cube</span><span class="params">(x)</span>:</span> <span class="keyword">return</span> x*x*x 
-<span class="prompt">&gt;&gt;&gt; </span>map(cube, range(<span class="number">1</span>, <span class="number">11</span>)) 
-[<span class="number">1</span>, <span class="number">8</span>, <span class="number">27</span>, <span class="number">64</span>, <span class="number">125</span>, <span class="number">216</span>, <span class="number">343</span>, <span class="number">512</span>, <span class="number">729</span>, <span class="number">1000</span>]
-<span class="prompt">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">cube</span><span class="params">(x)</span> :</span> <span class="keyword">return</span> x + x 
-<span class="prompt">... </span>
-<span class="prompt">&gt;&gt;&gt; </span>map(cube , <span class="string">"abcde"</span>) 
-[<span class="string">'aa'</span>, <span class="string">'bb'</span>, <span class="string">'cc'</span>, <span class="string">'dd'</span>, <span class="string">'ee'</span>]
+<pre><code>&gt;&gt;&gt; def cube(x): return x*x*x 
+&gt;&gt;&gt; map(cube, range(1, 11)) 
+[1, 8, 27, 64, 125, 216, 343, 512, 729, 1000]
+&gt;&gt;&gt; def cube(x) : return x + x 
+... 
+&gt;&gt;&gt; map(cube , &quot;abcde&quot;) 
+[&apos;aa&apos;, &apos;bb&apos;, &apos;cc&apos;, &apos;dd&apos;, &apos;ee&apos;]
 另外map也支持多个sequence，这就要求function也支持相应数量的参数输入：
-<span class="prompt">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(x, y)</span>:</span> <span class="keyword">return</span> x+y 
-<span class="prompt">&gt;&gt;&gt; </span>map(add, range(<span class="number">8</span>), range(<span class="number">8</span>)) 
-[<span class="number">0</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">10</span>, <span class="number">12</span>, <span class="number">14</span>]
+&gt;&gt;&gt; def add(x, y): return x+y 
+&gt;&gt;&gt; map(add, range(8), range(8)) 
+[0, 2, 4, 6, 8, 10, 12, 14]
 </code></pre>
 	
 	</div>
@@ -334,17 +426,17 @@ var _hmt = _hmt || [];
 	
 	  <p>在项目中有时候会遇到git关于分支的一些操作，现总结如下：</p>
 <p><strong>查看分支：</strong><br>1 查看本地分支：</p>
-<pre><code><span class="variable">$ </span>git branch
+<pre><code>$ git branch
 </code></pre><p>2 查看远程分支</p>
-<pre><code>$ git <span class="keyword">branch </span>-r
+<pre><code>$ git branch -r
 </code></pre><p><strong>创建分支：</strong><br>1 创建本地分支（建立分支后，仍停留在当前分支，切换分支：git checkout branchName）</p>
-<pre><code>$ git <span class="keyword">branch </span><span class="keyword">branchName</span>
+<pre><code>$ git branch branchName
 </code></pre><p>2 创建分支后切换到新分支</p>
-<pre><code>$ git checkout -<span class="tag">b</span> branchName
+<pre><code>$ git checkout -b branchName
 </code></pre><p><strong>提交分支：</strong><br>1 提交到远程分支</p>
-<pre><code>$ git commit -a -m <span class="symbol">'my</span> <span class="keyword">new</span> branch'
+<pre><code>$ git commit -a -m &apos;my new branch&apos;
 </code></pre><p>git push origin branchName:branchName<br>2 如果想把本地的某个分支mybranch提交到远程仓库，并作为远程仓库的master分支</p>
-<pre><code>$ git <span class="keyword">push </span>origin mybranch:master
+<pre><code>$ git push origin mybranch:master
 </code></pre>
 	
 	</div>
@@ -378,9 +470,9 @@ var _hmt = _hmt || [];
 <p>表A记录如下：<br>aID　　　　　aNum<br>1　　　　　a20050111<br>2　　　　　a20050112<br>3　　　　　a20050113<br>4　　　　　a20050114<br>5　　　　　a20050115</p>
 <p>表B记录如下:<br>bID　　　　　bName<br>1　　　　　2006032401<br>2　　　　　2006032402<br>3　　　　　2006032403<br>4　　　　　2006032404<br>8　　　　　2006032408</p>
 <p>1.left join<br>sql语句如下: </p>
-<pre><code><span class="keyword">select</span> * <span class="keyword">from</span> A
-left <span class="keyword">join</span> B 
-<span class="keyword">on</span> A.aID = B.bID
+<pre><code>select * from A
+left join B 
+on A.aID = B.bID
 </code></pre>
 	
 	</div>
@@ -409,14 +501,14 @@ left <span class="keyword">join</span> B
 	
 	  <p>在mysql中索引是我们对数据库进行优化的一个很好的功能，下面我来给大家介绍mysql 索引的创建 删除 增加 修改方法，希望些教程对各位朋友有所帮助。</p>
 <p><strong>CREATE命令创建唯一索引：</strong><br>可以创建一个唯一索引的表。唯一的索引意味着两个行不能拥有相同的索引值。这里是语法来创建索引的表</p>
-<pre><code><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> index_name
-<span class="keyword">ON</span> table_name ( column1, column2,...);</span>
+<pre><code>CREATE UNIQUE INDEX index_name
+ON table_name ( column1, column2,...);
 </code></pre><p>可以使用一个或多个列上创建索引。例如，我们可以创建一个索引的使用在表tutorials_tbl的tutorial_author列上</p>
-<pre><code><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> AUTHOR_INDEX
-<span class="keyword">ON</span> tutorials_tbl (tutorial_author)</span>
+<pre><code>CREATE UNIQUE INDEX AUTHOR_INDEX
+ON tutorials_tbl (tutorial_author)
 </code></pre><p><strong>CREATE命令创建简单索引</strong><br>可以创建一个简单的索引的表。只要省略UNIQUE关键字的查询创建一个简单的索引。简单的索引允许重复表中的值。<br>如果你想在一列以降序索引值，可以在列名后添加保留字DESC：</p>
-<pre><code>mysql&gt; <span class="keyword">CREATE</span> <span class="keyword">INDEX</span> AUTHOR_INDEX
-<span class="keyword">ON</span> tutorials_tbl (tutorial_author <span class="keyword">DESC</span>)
+<pre><code>mysql&gt; CREATE INDEX AUTHOR_INDEX
+ON tutorials_tbl (tutorial_author DESC)
 </code></pre>
 	
 	</div>
@@ -424,92 +516,6 @@ left <span class="keyword">join</span> B
   
 </div>
 	<a type="button" href="/2015/08/11/mysql-index/#more" class="btn btn-default more">阅读此文</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2015-08-11 </div>
-			<div class="article-title"><a href="/2015/08/11/redis-batch-del/" >批量删除Redis的key</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-  
-	<div class="col-md-12">
-	  
-	
-	  <pre><code>redis-<span class="keyword">cli</span> KEYS <span class="string">"yourkeys_*"</span> | xargs redis-<span class="keyword">cli</span> DEL
-</code></pre><hr>
-<p>Redis并没有提供批量删除记录的方法，这有时候很不方便，特别是重新初始化数据的时候。一般有两种做法：<br>如果业务场景明确，可以通过DBID进行区分，Redis默认的DBID是0，默认的配置文件是有16个DB，可以在应用中通过select方法指定数据库的ID进行存取。然后通过FlushDB命令能清空某个ID的数据库，达到重新初始化的目的。<br>如果某个ID的数据库已经有很多类型的记录了，无法整个库清空，那么就需要批量的删除key值，这时<strong>可以采用Linux管道</strong>，比如我要删除DBID为1的test开头的key值：</p>
-<pre><code>[root@banping redis]# /banping/redis/src/redis-<span class="keyword">cli</span> -<span class="keyword">n</span> 1 keys “<span class="keyword">test</span>*” | xargs /banping/redis/src/redis-<span class="keyword">cli</span> -<span class="keyword">n</span> 1 del
-(integer) 5095
-</code></pre><p>把keys的输出作为del的输入，这样就批量删除了。<br>附redis-cli 命令：<br>redis-cli 2.4.2</p>
-<pre><code>Usage: redis-cli [OPTIONS] [cmd [arg [arg ...]]]
--h Server hostname (default: 127.0.<span class="operator">0.<span class="number">1</span>)
--<span class="keyword">p</span> <span class="keyword">Server</span> port (<span class="keyword">default</span>: <span class="number">6379</span>)
--s <span class="keyword">Server</span> socket (overrides hostname <span class="keyword">and</span> port)
--a <span class="keyword">Password</span> <span class="keyword">to</span> <span class="keyword">use</span> <span class="keyword">when</span> connecting <span class="keyword">to</span> the <span class="keyword">server</span>
--r <span class="keyword">Execute</span> specified command <span class="keyword">N</span> times
--<span class="keyword">i</span> <span class="keyword">When</span> -r <span class="keyword">is</span> used, waits seconds per command.
-It <span class="keyword">is</span> possible <span class="keyword">to</span> specify sub-<span class="keyword">second</span> times <span class="keyword">like</span> -<span class="keyword">i</span> <span class="number">0.1</span>.
--<span class="keyword">n</span> <span class="keyword">Database</span> <span class="built_in">number</span>
--x <span class="keyword">Read</span> <span class="keyword">last</span> argument <span class="keyword">from</span> STDIN
--<span class="keyword">d</span> Multi-<span class="keyword">bulk</span> delimiter <span class="keyword">in</span> <span class="keyword">for</span> <span class="keyword">raw</span> formatting (<span class="keyword">default</span>: \<span class="keyword">n</span>)
-–<span class="keyword">raw</span> <span class="keyword">Use</span> <span class="keyword">raw</span> formatting <span class="keyword">for</span> replies (<span class="keyword">default</span> <span class="keyword">when</span> STDOUT <span class="keyword">is</span> <span class="keyword">not</span> a tty)
-–latency Enter a special <span class="keyword">mode</span> continuously sampling latency.
-–<span class="keyword">help</span> <span class="keyword">Output</span> this <span class="keyword">help</span> <span class="keyword">and</span> <span class="keyword">exit</span>
-–<span class="keyword">version</span> <span class="keyword">Output</span> <span class="keyword">version</span> <span class="keyword">and</span> <span class="keyword">exit</span></span>
-</code></pre>
-	
-	</div>
-	
-  
-</div>
-	<a type="button" href="/2015/08/11/redis-batch-del/#more" class="btn btn-default more">阅读此文</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2015-08-11 </div>
-			<div class="article-title"><a href="/2015/08/11/redis-error/" >redis_error:Operation against a key holding the wrong kind of value</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-  
-	<div class="col-md-12">
-	  
-	
-	  <p>首先应该明白报这个错误说明了你用的<strong>jedis方法与redis服务器中存储数据的类型存在冲突</strong>。</p>
-<p>例如：数据库中有一个key是usrInfo的数据存储的是Hash类型的，但是你使用jedis执行数据</p>
-<p>操作的时候却使用了非Hash的操作方法，比如Sorted Sets里的方法。此时就会报</p>
-<p><code>ERR Operation against a key holding the wrong kind of value</code></p>
-<p>问题解决：</p>
-<p>先执行一条如下命令，usrInfo为其中的一个key值。</p>
-<pre><code>redis <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt;type usrInfo
-</code></pre><p>此时会显示出该key存储在现在redis服务器中的类型，例如：</p>
-<pre><code>redis <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt;hash
-</code></pre><p>则表示key为usrInfo的数据是以hash类型存储在redis服务器里的，此时操作这个数据就必须使用hset、hget等操作方法。</p>
-<p>如果是zset如下：</p>
-<pre><code>redis <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt;zset
-</code></pre><p>则表示数据类型为Sorted Sets的。此时就需要使用zadd、zrange等操作方法，否则就会报ERR Operation against a key holding the wrong kind of value这个错误！</p>
-
-	
-	</div>
-	
-  
-</div>
-	<a type="button" href="/2015/08/11/redis-error/#more" class="btn btn-default more">阅读此文</a>
 </div>
 
 		
@@ -561,9 +567,13 @@ It <span class="keyword">is</span> possible <span class="keyword">to</span> spec
 		
 			<li><a href="/categories/git/">git<span>1</span></a></li>
 		
-			<li><a href="/categories/hexo/">hexo<span>1</span></a></li>
+			<li><a href="/categories/hadoop/">hadoop<span>1</span></a></li>
+		
+			<li><a href="/categories/hexo/">hexo<span>2</span></a></li>
 		
 			<li><a href="/categories/life/">life<span>1</span></a></li>
+		
+			<li><a href="/categories/mybatis/">mybatis<span>1</span></a></li>
 		
 			<li><a href="/categories/mysql/">mysql<span>2</span></a></li>
 		
@@ -580,31 +590,35 @@ It <span class="keyword">is</span> possible <span class="keyword">to</span> spec
 		<h4>标签云</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
+			<li><a href="/tags/mysql/">mysql<span>2</span></a></li>
+		
 			<li><a href="/tags/git/">git<span>1</span></a></li>
 		
 			<li><a href="/tags/yield/">yield<span>1</span></a></li>
 		
-			<li><a href="/tags/hexo/">hexo<span>1</span></a></li>
+			<li><a href="/tags/hadoop/">hadoop<span>1</span></a></li>
+		
+			<li><a href="/tags/life/">life<span>1</span></a></li>
+		
+			<li><a href="/tags/hexo/">hexo<span>2</span></a></li>
+		
+			<li><a href="/tags/pub/">pub<span>1</span></a></li>
+		
+			<li><a href="/tags/mybatis/">mybatis<span>1</span></a></li>
+		
+			<li><a href="/tags/lambda/">lambda<span>1</span></a></li>
+		
+			<li><a href="/tags/redis/">redis<span>3</span></a></li>
+		
+			<li><a href="/tags/sub/">sub<span>1</span></a></li>
+		
+			<li><a href="/tags/file/">file<span>1</span></a></li>
 		
 			<li><a href="/tags/index/">index<span>1</span></a></li>
 		
 			<li><a href="/tags/python/">python<span>3</span></a></li>
 		
-			<li><a href="/tags/redis/">redis<span>3</span></a></li>
-		
-			<li><a href="/tags/lambda/">lambda<span>1</span></a></li>
-		
-			<li><a href="/tags/file/">file<span>1</span></a></li>
-		
-			<li><a href="/tags/life/">life<span>1</span></a></li>
-		
-			<li><a href="/tags/pub/">pub<span>1</span></a></li>
-		
-			<li><a href="/tags/mysql/">mysql<span>2</span></a></li>
-		
 			<li><a href="/tags/branch/">branch<span>1</span></a></li>
-		
-			<li><a href="/tags/sub/">sub<span>1</span></a></li>
 		
 		 
 		</ul>
@@ -618,6 +632,14 @@ It <span class="keyword">is</span> possible <span class="keyword">to</span> spec
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2015/12/14/hadoop1/" ><i class="fa fa-file-o"></i>hadoop学习笔记一...</a>
+      </li>
+    
+      <li>
+        <a href="/2015/12/13/mybatis1/" ><i class="fa fa-file-o"></i>mybatis学习笔记一...</a>
+      </li>
+    
+      <li>
         <a href="/2015/08/24/redis-pub-sub/" ><i class="fa fa-file-o"></i>Redis之发布与订阅...</a>
       </li>
     
@@ -627,14 +649,6 @@ It <span class="keyword">is</span> possible <span class="keyword">to</span> spec
     
       <li>
         <a href="/2015/08/19/python-file/" ><i class="fa fa-file-o"></i>Python之file...</a>
-      </li>
-    
-      <li>
-        <a href="/2015/08/19/life-lesson1/" ><i class="fa fa-file-o"></i>Lesson1...</a>
-      </li>
-    
-      <li>
-        <a href="/2015/08/17/python-func/" ><i class="fa fa-file-o"></i>Python特殊语法：filter、map、reduc...</a>
       </li>
     
   </ul>

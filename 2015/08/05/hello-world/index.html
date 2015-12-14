@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>sql之left join、right join、inner join的区别 | dnwdi</title>
+  <title>Hello World | dnwdi</title>
   <meta name="author" content="dnwdi">
   
   <meta name="description" content="dnwdi&#39;s blog | java">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="sql之left join、right join、inner join的区别"/>
+  <meta property="og:title" content="Hello World"/>
   <meta property="og:site_name" content="dnwdi"/>
 
   
@@ -104,7 +104,7 @@ var _hmt = _hmt || [];
 
 	
 		<div class="page-header">		
-			<h1> sql之left join、right join、inner join的区别</h1>
+			<h1> Hello World</h1>
 		</div>		
 	
 
@@ -120,34 +120,15 @@ var _hmt = _hmt || [];
 
 	<!-- content -->
 	<div class="mypage">		
-	    <p><strong>left join(左联接) 返回包括左表中的所有记录和右表中联结字段相等的记录</strong> </p>
-<p><strong>right join(右联接) 返回包括右表中的所有记录和左表中联结字段相等的记录</strong></p>
-<p><strong>inner join(等值连接) 只返回两个表中联结字段相等的行</strong></p>
-<p>举例如下： </p>
-<p>表A记录如下：<br>aID　　　　　aNum<br>1　　　　　a20050111<br>2　　　　　a20050112<br>3　　　　　a20050113<br>4　　　　　a20050114<br>5　　　　　a20050115</p>
-<p>表B记录如下:<br>bID　　　　　bName<br>1　　　　　2006032401<br>2　　　　　2006032402<br>3　　　　　2006032403<br>4　　　　　2006032404<br>8　　　　　2006032408</p>
-<p>1.left join<br>sql语句如下: </p>
-<pre><code>select * from A
-left join B 
-on A.aID = B.bID
-</code></pre><a id="more"></a>    
-<p>结果如下:<br>aID　　　　　aNum　　　　　bID　　　　　bName<br>1　　　　　a20050111　　　　1　　　　　2006032401<br>2　　　　　a20050112　　　　2　　　　　2006032402<br>3　　　　　a20050113　　　　3　　　　　2006032403<br>4　　　　　a20050114　　　　4　　　　　2006032404<br>5　　　　　a20050115　　　　NULL　　　　　NULL</p>
-<p>（所影响的行数为 5 行）<br>结果说明:<br>left join是以A表的记录为基础的,A可以看成左表,B可以看成右表,left join是以左表为准的.<br>换句话说,左表(A)的记录将会全部表示出来,而右表(B)只会显示符合搜索条件的记录(例子中为: A.aID = B.bID).<br>B表记录不足的地方均为NULL.</p>
-<p>2.right join<br>sql语句如下: </p>
-<pre><code>select * from A
-right join B 
-on A.aID = B.bID
-</code></pre><p>结果如下:<br>aID　　　　　aNum　　　　　bID　　　　　bName<br>1　　　　　a20050111　　　　1　　　　　2006032401<br>2　　　　　a20050112　　　　2　　　　　2006032402<br>3　　　　　a20050113　　　　3　　　　　2006032403<br>4　　　　　a20050114　　　　4　　　　　2006032404<br>NULL　　　　　NULL　　　　　8　　　　　2006032408</p>
-<p>（所影响的行数为 5 行）<br>结果说明:<br>仔细观察一下,就会发现,和left join的结果刚好相反,这次是以右表(B)为基础的,A表不足的地方用NULL填充.</p>
-<p>3.inner join<br>sql语句如下: </p>
-<pre><code>select * from A
-innerjoin B 
-on A.aID = B.bID
-</code></pre><p>结果如下:<br>aID　　　　　aNum　　　　　bID　　　　　bName<br>1　　　　　a20050111　　　　1　　　　　2006032401<br>2　　　　　a20050112　　　　2　　　　　2006032402<br>3　　　　　a20050113　　　　3　　　　　2006032403<br>4　　　　　a20050114　　　　4　　　　　2006032404</p>
-<p>结果说明:<br>很明显,这里只显示出了 A.aID = B.bID的记录.这说明inner join并不以谁为基础,它只显示符合条件的记录.</p>
-<p>注:<br>LEFT JOIN操作用于在任何的 FROM 子句中，组合来源表的记录。使用 LEFT JOIN 运算来创建一个左边外部联接。左边外部联接将包含了从第一个（左边）开始的两个表中的全部记录，即使在第二个（右边）表中并没有相符值的记录。</p>
-<p>语法：FROM table1 LEFT JOIN table2 ON table1.field1 compopr table2.field2</p>
-<p>说明：table1, table2参数用于指定要将记录组合的表的名称。<br>field1, field2参数指定被联接的字段的名称。且这些字段必须有相同的数据类型及包含相同类型的数据，但它们不需要有相同的名称。<br>compopr参数指定关系比较运算符：”=”， “&lt;”， “&gt;”， “&lt;=”， “&gt;=” 或 “&lt;&gt;”。<br>如果在INNER JOIN操作中要联接包含Memo 数据类型或 OLE Object 数据类型数据的字段，将会发生错误. </p>
+	    <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate_static_files"><a href="#Generate_static_files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy_to_remote_sites"><a href="#Deploy_to_remote_sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
 	  
 	</div>
 
@@ -157,13 +138,13 @@ on A.aID = B.bID
 <ul class="pagination">
 	 
 				
-    	<li class="prev"><a href="/2015/08/17/git-branch/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>上一页</a></li>
+    	<li class="prev"><a href="/2015/08/06/test/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>上一页</a></li>
   		
 
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/08/11/mysql-index/" class="alignright next">下一页<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+          <li class="next disabled"><a>下一页<i class="fa fa-arrow-circle-o-right"></i></a></li>
         
 	
 </ul>
@@ -178,7 +159,7 @@ on A.aID = B.bID
   <h2 class="title">留言</h2>
 
   
-  	 <div class="ds-thread" data-thread-key="2015/08/17/sql-join/" data-title="sql之left join、right join、inner join的区别" data-url="http://www.dnwdi.com/2015/08/17/sql-join/"></div>  
+  	 <div class="ds-thread" data-thread-key="2015/08/05/hello-world/" data-title="Hello World" data-url="http://www.dnwdi.com/2015/08/05/hello-world/"></div>  
   
 </section>
 
@@ -192,7 +173,7 @@ on A.aID = B.bID
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	2015-08-17 
+	2015-08-05 
 	</div>
 	
 
@@ -203,7 +184,7 @@ on A.aID = B.bID
     <ul id="categorys" class="tag_box list-unstyled collapse in">
           
   <li>
-    <li><a href="/categories/mysql/">mysql<span>2</span></a></li>
+    <li><a href="/categories/hexo/">hexo<span>2</span></a></li>
   </li>
 
     </ul>
@@ -216,7 +197,7 @@ on A.aID = B.bID
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/mysql/">mysql<span>2</span></a></li>
+  <li><a href="/tags/hexo/">hexo<span>2</span></a></li>
     </ul>
 	</div>
 		

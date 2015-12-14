@@ -120,27 +120,27 @@ var _hmt = _hmt || [];
 
 	<!-- content -->
 	<div class="mypage">		
-	    <pre><code>redis-<span class="keyword">cli</span> KEYS <span class="string">"yourkeys_*"</span> | xargs redis-<span class="keyword">cli</span> DEL
+	    <pre><code>redis-cli KEYS &quot;yourkeys_*&quot; | xargs redis-cli DEL
 </code></pre><hr>
 <p>Redis并没有提供批量删除记录的方法，这有时候很不方便，特别是重新初始化数据的时候。一般有两种做法：<br>如果业务场景明确，可以通过DBID进行区分，Redis默认的DBID是0，默认的配置文件是有16个DB，可以在应用中通过select方法指定数据库的ID进行存取。然后通过FlushDB命令能清空某个ID的数据库，达到重新初始化的目的。<br>如果某个ID的数据库已经有很多类型的记录了，无法整个库清空，那么就需要批量的删除key值，这时<strong>可以采用Linux管道</strong>，比如我要删除DBID为1的test开头的key值：</p>
-<pre><code>[root@banping redis]# /banping/redis/src/redis-<span class="keyword">cli</span> -<span class="keyword">n</span> 1 keys “<span class="keyword">test</span>*” | xargs /banping/redis/src/redis-<span class="keyword">cli</span> -<span class="keyword">n</span> 1 del
+<pre><code>[root@banping redis]# /banping/redis/src/redis-cli -n 1 keys “test*” | xargs /banping/redis/src/redis-cli -n 1 del
 (integer) 5095
 </code></pre><p>把keys的输出作为del的输入，这样就批量删除了。<br>附redis-cli 命令：<br>redis-cli 2.4.2</p>
 <pre><code>Usage: redis-cli [OPTIONS] [cmd [arg [arg ...]]]
--h Server hostname (default: 127.0.<span class="operator">0.<span class="number">1</span>)
--<span class="keyword">p</span> <span class="keyword">Server</span> port (<span class="keyword">default</span>: <span class="number">6379</span>)
--s <span class="keyword">Server</span> socket (overrides hostname <span class="keyword">and</span> port)
--a <span class="keyword">Password</span> <span class="keyword">to</span> <span class="keyword">use</span> <span class="keyword">when</span> connecting <span class="keyword">to</span> the <span class="keyword">server</span>
--r <span class="keyword">Execute</span> specified command <span class="keyword">N</span> times
--<span class="keyword">i</span> <span class="keyword">When</span> -r <span class="keyword">is</span> used, waits seconds per command.
-It <span class="keyword">is</span> possible <span class="keyword">to</span> specify sub-<span class="keyword">second</span> times <span class="keyword">like</span> -<span class="keyword">i</span> <span class="number">0.1</span>.
--<span class="keyword">n</span> <span class="keyword">Database</span> <span class="built_in">number</span>
--x <span class="keyword">Read</span> <span class="keyword">last</span> argument <span class="keyword">from</span> STDIN
--<span class="keyword">d</span> Multi-<span class="keyword">bulk</span> delimiter <span class="keyword">in</span> <span class="keyword">for</span> <span class="keyword">raw</span> formatting (<span class="keyword">default</span>: \<span class="keyword">n</span>)
-–<span class="keyword">raw</span> <span class="keyword">Use</span> <span class="keyword">raw</span> formatting <span class="keyword">for</span> replies (<span class="keyword">default</span> <span class="keyword">when</span> STDOUT <span class="keyword">is</span> <span class="keyword">not</span> a tty)
-–latency Enter a special <span class="keyword">mode</span> continuously sampling latency.
-–<span class="keyword">help</span> <span class="keyword">Output</span> this <span class="keyword">help</span> <span class="keyword">and</span> <span class="keyword">exit</span>
-–<span class="keyword">version</span> <span class="keyword">Output</span> <span class="keyword">version</span> <span class="keyword">and</span> <span class="keyword">exit</span></span>
+-h Server hostname (default: 127.0.0.1)
+-p Server port (default: 6379)
+-s Server socket (overrides hostname and port)
+-a Password to use when connecting to the server
+-r Execute specified command N times
+-i When -r is used, waits seconds per command.
+It is possible to specify sub-second times like -i 0.1.
+-n Database number
+-x Read last argument from STDIN
+-d Multi-bulk delimiter in for raw formatting (default: \n)
+–raw Use raw formatting for replies (default when STDOUT is not a tty)
+–latency Enter a special mode continuously sampling latency.
+–help Output this help and exit
+–version Output version and exit
 </code></pre>	  
 	</div>
 

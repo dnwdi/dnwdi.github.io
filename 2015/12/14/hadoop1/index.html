@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>sql之left join、right join、inner join的区别 | dnwdi</title>
+  <title>hadoop学习笔记一 | dnwdi</title>
   <meta name="author" content="dnwdi">
   
   <meta name="description" content="dnwdi&#39;s blog | java">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="sql之left join、right join、inner join的区别"/>
+  <meta property="og:title" content="hadoop学习笔记一"/>
   <meta property="og:site_name" content="dnwdi"/>
 
   
@@ -104,7 +104,7 @@ var _hmt = _hmt || [];
 
 	
 		<div class="page-header">		
-			<h1> sql之left join、right join、inner join的区别</h1>
+			<h1> hadoop学习笔记一</h1>
 		</div>		
 	
 
@@ -120,34 +120,20 @@ var _hmt = _hmt || [];
 
 	<!-- content -->
 	<div class="mypage">		
-	    <p><strong>left join(左联接) 返回包括左表中的所有记录和右表中联结字段相等的记录</strong> </p>
-<p><strong>right join(右联接) 返回包括右表中的所有记录和左表中联结字段相等的记录</strong></p>
-<p><strong>inner join(等值连接) 只返回两个表中联结字段相等的行</strong></p>
-<p>举例如下： </p>
-<p>表A记录如下：<br>aID　　　　　aNum<br>1　　　　　a20050111<br>2　　　　　a20050112<br>3　　　　　a20050113<br>4　　　　　a20050114<br>5　　　　　a20050115</p>
-<p>表B记录如下:<br>bID　　　　　bName<br>1　　　　　2006032401<br>2　　　　　2006032402<br>3　　　　　2006032403<br>4　　　　　2006032404<br>8　　　　　2006032408</p>
-<p>1.left join<br>sql语句如下: </p>
-<pre><code>select * from A
-left join B 
-on A.aID = B.bID
-</code></pre><a id="more"></a>    
-<p>结果如下:<br>aID　　　　　aNum　　　　　bID　　　　　bName<br>1　　　　　a20050111　　　　1　　　　　2006032401<br>2　　　　　a20050112　　　　2　　　　　2006032402<br>3　　　　　a20050113　　　　3　　　　　2006032403<br>4　　　　　a20050114　　　　4　　　　　2006032404<br>5　　　　　a20050115　　　　NULL　　　　　NULL</p>
-<p>（所影响的行数为 5 行）<br>结果说明:<br>left join是以A表的记录为基础的,A可以看成左表,B可以看成右表,left join是以左表为准的.<br>换句话说,左表(A)的记录将会全部表示出来,而右表(B)只会显示符合搜索条件的记录(例子中为: A.aID = B.bID).<br>B表记录不足的地方均为NULL.</p>
-<p>2.right join<br>sql语句如下: </p>
-<pre><code>select * from A
-right join B 
-on A.aID = B.bID
-</code></pre><p>结果如下:<br>aID　　　　　aNum　　　　　bID　　　　　bName<br>1　　　　　a20050111　　　　1　　　　　2006032401<br>2　　　　　a20050112　　　　2　　　　　2006032402<br>3　　　　　a20050113　　　　3　　　　　2006032403<br>4　　　　　a20050114　　　　4　　　　　2006032404<br>NULL　　　　　NULL　　　　　8　　　　　2006032408</p>
-<p>（所影响的行数为 5 行）<br>结果说明:<br>仔细观察一下,就会发现,和left join的结果刚好相反,这次是以右表(B)为基础的,A表不足的地方用NULL填充.</p>
-<p>3.inner join<br>sql语句如下: </p>
-<pre><code>select * from A
-innerjoin B 
-on A.aID = B.bID
-</code></pre><p>结果如下:<br>aID　　　　　aNum　　　　　bID　　　　　bName<br>1　　　　　a20050111　　　　1　　　　　2006032401<br>2　　　　　a20050112　　　　2　　　　　2006032402<br>3　　　　　a20050113　　　　3　　　　　2006032403<br>4　　　　　a20050114　　　　4　　　　　2006032404</p>
-<p>结果说明:<br>很明显,这里只显示出了 A.aID = B.bID的记录.这说明inner join并不以谁为基础,它只显示符合条件的记录.</p>
-<p>注:<br>LEFT JOIN操作用于在任何的 FROM 子句中，组合来源表的记录。使用 LEFT JOIN 运算来创建一个左边外部联接。左边外部联接将包含了从第一个（左边）开始的两个表中的全部记录，即使在第二个（右边）表中并没有相符值的记录。</p>
-<p>语法：FROM table1 LEFT JOIN table2 ON table1.field1 compopr table2.field2</p>
-<p>说明：table1, table2参数用于指定要将记录组合的表的名称。<br>field1, field2参数指定被联接的字段的名称。且这些字段必须有相同的数据类型及包含相同类型的数据，但它们不需要有相同的名称。<br>compopr参数指定关系比较运算符：”=”， “&lt;”， “&gt;”， “&lt;=”， “&gt;=” 或 “&lt;&gt;”。<br>如果在INNER JOIN操作中要联接包含Memo 数据类型或 OLE Object 数据类型数据的字段，将会发生错误. </p>
+	    <ol>
+<li><p>HDFS实现数据的存储，MapReduce实现数据的分析和处理。</p>
+</li>
+<li><p>传统关系数据库只更新一小部分记录时，B树更有优势；如果有大量数据更新时，MapReduce更有效率，因为需要使用 排序/合并 来重建数据库。</p>
+</li>
+<li><table><tbody><tr><td><em>区别</em></td><td><em>传统的关系数据库</em></td><td><em>MapReduce</em></td></tr><tr><td>数据大小</td><td>GB</td><td>PB</td></tr><tr><td>数据存取</td><td>交互式和批处理</td><td>批处理</td></tr><tr><td>更新</td><td>多次读/写 </td><td>一次写入，多次读取</td></tr><tr><td>结构</td><td>静态模式/结构化数据</td><td>动态模式/非结构化数据</td></tr><tr><td>完整性</td><td>高</td><td>低</td></tr><tr><td>冗余</td><td>低</td><td>高</td></tr><tr><td>横向扩展</td><td>非线性</td><td>线性的</td></tr></tbody></table>
+</li>
+<li><p>MapReduce的核心特征：数据本地化，以实现数据的快速访问。</p>
+</li>
+<li><p>MapReduce能实现失败检测：采用无共享框架，能够检测并重新执行那些失败的map或reduce任务</p>
+</li>
+<li><p>MapReduce三大设计目标：<br> a. 为只需要短短几分钟或几个小时完成的作业提供服务<br> b. 运行于同一个内部有高速网络连接的数据中心内<br> c. 数据中心内的计算机都是可靠的、定制的硬件</p>
+</li>
+</ol>
 	  
 	</div>
 
@@ -156,14 +142,14 @@ on A.aID = B.bID
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2015/08/17/git-branch/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>上一页</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>上一页</a></li>
+        
 
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/08/11/mysql-index/" class="alignright next">下一页<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/12/13/mybatis1/" class="alignright next">下一页<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -178,7 +164,7 @@ on A.aID = B.bID
   <h2 class="title">留言</h2>
 
   
-  	 <div class="ds-thread" data-thread-key="2015/08/17/sql-join/" data-title="sql之left join、right join、inner join的区别" data-url="http://www.dnwdi.com/2015/08/17/sql-join/"></div>  
+  	 <div class="ds-thread" data-thread-key="2015/12/14/hadoop1/" data-title="hadoop学习笔记一" data-url="http://www.dnwdi.com/2015/12/14/hadoop1/"></div>  
   
 </section>
 
@@ -192,7 +178,7 @@ on A.aID = B.bID
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	2015-08-17 
+	2015-12-14 
 	</div>
 	
 
@@ -203,7 +189,7 @@ on A.aID = B.bID
     <ul id="categorys" class="tag_box list-unstyled collapse in">
           
   <li>
-    <li><a href="/categories/mysql/">mysql<span>2</span></a></li>
+    <li><a href="/categories/hadoop/">hadoop<span>1</span></a></li>
   </li>
 
     </ul>
@@ -216,7 +202,7 @@ on A.aID = B.bID
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/mysql/">mysql<span>2</span></a></li>
+  <li><a href="/tags/hadoop/">hadoop<span>1</span></a></li>
     </ul>
 	</div>
 		

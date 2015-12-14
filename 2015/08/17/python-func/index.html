@@ -122,62 +122,62 @@ var _hmt = _hmt || [];
 	<div class="mypage">		
 	    <p>Python内置了一些非常有趣但非常有用的函数，充分体现了Python的语言魅力！</p>
 <p><strong>filter(function, sequence)</strong>：对sequence中的item依次执行function(item)，将执行结果为True的item组成一个List/String/Tuple（取决于sequence的类型）返回：</p>
-<pre><code><span class="prompt">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(x)</span>:</span> <span class="keyword">return</span> x % <span class="number">2</span> != <span class="number">0</span> <span class="keyword">and</span> x % <span class="number">3</span> != <span class="number">0</span> 
-<span class="prompt">&gt;&gt;&gt; </span>filter(f, range(<span class="number">2</span>, <span class="number">25</span>)) 
-[<span class="number">5</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">17</span>, <span class="number">19</span>, <span class="number">23</span>]
-<span class="prompt">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(x)</span>:</span> <span class="keyword">return</span> x != <span class="string">'a'</span> 
-<span class="prompt">&gt;&gt;&gt; </span>filter(f, <span class="string">"abcdef"</span>) 
-<span class="string">'bcdef'</span>
+<pre><code>&gt;&gt;&gt; def f(x): return x % 2 != 0 and x % 3 != 0 
+&gt;&gt;&gt; filter(f, range(2, 25)) 
+[5, 7, 11, 13, 17, 19, 23]
+&gt;&gt;&gt; def f(x): return x != &apos;a&apos; 
+&gt;&gt;&gt; filter(f, &quot;abcdef&quot;) 
+&apos;bcdef&apos;
 </code></pre><p><strong>map(function, sequence)</strong> ：对sequence中的item依次执行function(item)，见执行结果组成一个List返回：</p>
-<pre><code><span class="prompt">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">cube</span><span class="params">(x)</span>:</span> <span class="keyword">return</span> x*x*x 
-<span class="prompt">&gt;&gt;&gt; </span>map(cube, range(<span class="number">1</span>, <span class="number">11</span>)) 
-[<span class="number">1</span>, <span class="number">8</span>, <span class="number">27</span>, <span class="number">64</span>, <span class="number">125</span>, <span class="number">216</span>, <span class="number">343</span>, <span class="number">512</span>, <span class="number">729</span>, <span class="number">1000</span>]
-<span class="prompt">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">cube</span><span class="params">(x)</span> :</span> <span class="keyword">return</span> x + x 
-<span class="prompt">... </span>
-<span class="prompt">&gt;&gt;&gt; </span>map(cube , <span class="string">"abcde"</span>) 
-[<span class="string">'aa'</span>, <span class="string">'bb'</span>, <span class="string">'cc'</span>, <span class="string">'dd'</span>, <span class="string">'ee'</span>]
+<pre><code>&gt;&gt;&gt; def cube(x): return x*x*x 
+&gt;&gt;&gt; map(cube, range(1, 11)) 
+[1, 8, 27, 64, 125, 216, 343, 512, 729, 1000]
+&gt;&gt;&gt; def cube(x) : return x + x 
+... 
+&gt;&gt;&gt; map(cube , &quot;abcde&quot;) 
+[&apos;aa&apos;, &apos;bb&apos;, &apos;cc&apos;, &apos;dd&apos;, &apos;ee&apos;]
 另外map也支持多个sequence，这就要求function也支持相应数量的参数输入：
-<span class="prompt">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(x, y)</span>:</span> <span class="keyword">return</span> x+y 
-<span class="prompt">&gt;&gt;&gt; </span>map(add, range(<span class="number">8</span>), range(<span class="number">8</span>)) 
-[<span class="number">0</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">10</span>, <span class="number">12</span>, <span class="number">14</span>]
+&gt;&gt;&gt; def add(x, y): return x+y 
+&gt;&gt;&gt; map(add, range(8), range(8)) 
+[0, 2, 4, 6, 8, 10, 12, 14]
 </code></pre><a id="more"></a>
 <p><strong>reduce(function, sequence, starting_value)</strong>：对sequence中的item顺序迭代调用function，如果有starting_value，还可以作为初始值调用，例如可以用来对List求和：</p>
-<pre><code><span class="prompt">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(x,y)</span>:</span> <span class="keyword">return</span> x + y 
-<span class="prompt">&gt;&gt;&gt; </span>reduce(add, range(<span class="number">1</span>, <span class="number">11</span>)) 
-<span class="number">55</span> （注：<span class="number">1</span>+<span class="number">2</span>+<span class="number">3</span>+<span class="number">4</span>+<span class="number">5</span>+<span class="number">6</span>+<span class="number">7</span>+<span class="number">8</span>+<span class="number">9</span>+<span class="number">10</span>）
-<span class="prompt">&gt;&gt;&gt; </span>reduce(add, range(<span class="number">1</span>, <span class="number">11</span>), <span class="number">20</span>) 
-<span class="number">75</span> （注：<span class="number">1</span>+<span class="number">2</span>+<span class="number">3</span>+<span class="number">4</span>+<span class="number">5</span>+<span class="number">6</span>+<span class="number">7</span>+<span class="number">8</span>+<span class="number">9</span>+<span class="number">10</span>+<span class="number">20</span>）
+<pre><code>&gt;&gt;&gt; def add(x,y): return x + y 
+&gt;&gt;&gt; reduce(add, range(1, 11)) 
+55 （注：1+2+3+4+5+6+7+8+9+10）
+&gt;&gt;&gt; reduce(add, range(1, 11), 20) 
+75 （注：1+2+3+4+5+6+7+8+9+10+20）
 </code></pre><p><strong>lambda</strong>：这是Python支持一种有趣的语法，它允许你快速定义单行的最小函数，类似与C语言中的宏，这些叫做lambda的函数，是从LISP借用来的，可以用在任何需要函数的地方： </p>
-<pre><code>&gt;&gt;&gt; g = lambda x: x * <span class="number">2</span> 
-&gt;&gt;&gt; g(<span class="number">3</span>) 
-<span class="number">6</span> 
-&gt;&gt;&gt; (lambda x: x * <span class="number">2</span>)(<span class="number">3</span>) 
-<span class="number">6</span>
+<pre><code>&gt;&gt;&gt; g = lambda x: x * 2 
+&gt;&gt;&gt; g(3) 
+6 
+&gt;&gt;&gt; (lambda x: x * 2)(3) 
+6
 </code></pre><p>我们也可以把filter map reduce 和lambda结合起来用，函数就可以简单的写成一行。<br>例如</p>
-<pre><code>kmpathes = filter<span class="list">(<span class="keyword">lambda</span> kmpath: kmpath,                  
-map<span class="list">(<span class="keyword">lambda</span> kmpath: string.strip<span class="list">(<span class="keyword">kmpath</span>)</span>,
-string.split<span class="list">(<span class="keyword">l</span>, ':')</span>)</span>)</span> 
+<pre><code>kmpathes = filter(lambda kmpath: kmpath,                  
+map(lambda kmpath: string.strip(kmpath),
+string.split(l, &apos;:&apos;))) 
 </code></pre><p>看起来麻烦，其实就像用语言来描述问题一样，非常优雅。<br>对 l 中的所有元素以’:’做分割，得出一个列表。对这个列表的每一个元素做字符串strip，形成一个列表。对这个列表的每一个元素做直接返回操作(这个地方可以加上过滤条件限制)，最终获得一个字符串被’:’分割的列表，列表中的每一个字符串都做了strip，并可以对特殊字符串过滤。</p>
 <hr>
 <p>lambda表达式返回一个函数对象<br>例子：</p>
-<pre><code><span class="function"><span class="keyword">func</span> = <span class="title">lambda</span> <span class="title">x</span>,<span class="title">y</span>:<span class="title">x</span>+<span class="title">y</span></span>
+<pre><code>func = lambda x,y:x+y
 </code></pre><p>func相当于下面这个函数</p>
-<pre><code><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(x,y)</span>:</span>
-    <span class="keyword">return</span> x+y
+<pre><code>def func(x,y):
+    return x+y
 </code></pre><p>注意def是语句而lambda是表达式<br>下面这种情况下就只能用lambda而不能用def</p>
-<pre><code><span class="list">[<span class="list">(<span class="keyword"><span class="built_in">lambda</span></span> x:x*x)</span><span class="list">(<span class="keyword">x</span>)</span> for x in range<span class="list">(<span class="keyword">1</span>,<span class="number">11</span>)</span>]</span>
+<pre><code>[(lambda x:x*x)(x) for x in range(1,11)]
 </code></pre><p><strong>map，reduce，filter中的function都可以用lambda表达式来生成！</strong></p>
 <p>map(function,sequence)<br>把sequence中的值当参数逐个传给function，返回一个包含函数执行结果的list。<br>如果function有两个参数，即map(function,sequence1,sequence2)。</p>
 <p>例子：<br>求1<em>1,2</em>2,3<em>3,4</em>4</p>
-<pre><code>map<span class="list">(<span class="keyword">lambda</span> x<span class="keyword">:x*x</span>,range<span class="list">(<span class="number">1</span>,<span class="number">5</span>)</span>)</span>
+<pre><code>map(lambda x:x*x,range(1,5))
 </code></pre><p>返回值是[1,4,9,16]</p>
 <p>reduce(function,sequence)<br>function接收的参数个数只能为2<br>先把sequence中第一个值和第二个值当参数传给function，再把function的返回值和第三个值当参数传给<br>function，然后只返回一个结果。</p>
 <p>例子：<br>求1到10的累加</p>
-<pre><code>reduce<span class="list">(<span class="keyword">lambda</span> x,y<span class="keyword">:x+y</span>,range<span class="list">(<span class="number">1</span>,<span class="number">11</span>)</span>)</span>
+<pre><code>reduce(lambda x,y:x+y,range(1,11))
 </code></pre><p>返回值是55。</p>
 <p>filter(function,sequence)<br>function的返回值只能是True或False<br>把sequence中的值逐个当参数传给function，如果function(x)的返回值是True，就把x加到filter的返回值里面。一般来说filter的返回值是list，特殊情况如sequence是string或tuple，则返回值按照sequence的类型。</p>
 <p>例子：<br>找出1到10之间的奇数</p>
-<pre><code>filter(lambda x:x%<span class="number">2</span>!=<span class="number">0</span>,range(<span class="number">1</span>,<span class="number">11</span>))
+<pre><code>filter(lambda x:x%2!=0,range(1,11))
 </code></pre><p>返回值<br>[1,3,5,7,9]</p>
 <p>如果sequence是一个string<br>filter(lambda x:len(x)!=0,’hello’)返回’hello’<br>filter(lambda x:len(x)==0,’hello’)返回’’</p>
 	  

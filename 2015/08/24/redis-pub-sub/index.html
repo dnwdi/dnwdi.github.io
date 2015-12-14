@@ -125,22 +125,22 @@ var _hmt = _hmt || [];
 </li>
 </ol>
 <p>下面是个hello,world程序:</p>
-<pre><code><span class="keyword">package</span> demo;
-<span class="keyword">import</span> org.jredis.*;
-<span class="keyword">import</span> org.jredis.ri.alphazero.JRedisClient;
-<span class="keyword">public</span> class App {
-<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) {
-    <span class="keyword">try</span> {
-             JRedis  jr = <span class="keyword">new</span> JRedisClient(<span class="string">"*.*.*.*"</span>,<span class="number">6379</span>); <span class="comment">//redis服务地址和端口号</span>
-             <span class="keyword">String</span> <span class="variable">key</span> = <span class="string">"mKey"</span>;
-             jr.<span class="built_in">set</span>(<span class="variable">key</span>, <span class="string">"hello,redis!"</span>);
-             <span class="keyword">String</span> v = <span class="keyword">new</span> <span class="keyword">String</span>(jr.<span class="built_in">get</span>(<span class="variable">key</span>));
-             <span class="keyword">String</span> k2 = <span class="string">"count"</span>;
+<pre><code>package demo;
+import org.jredis.*;
+import org.jredis.ri.alphazero.JRedisClient;
+public class App {
+public static void main(String[] args) {
+    try {
+             JRedis  jr = new JRedisClient(&quot;*.*.*.*&quot;,6379); //redis服务地址和端口号
+             String key = &quot;mKey&quot;;
+             jr.set(key, &quot;hello,redis!&quot;);
+             String v = new String(jr.get(key));
+             String k2 = &quot;count&quot;;
              jr.incr(k2);
              jr.incr(k2);
-             System.out.<span class="built_in">println</span>(v);
-             System.out.<span class="built_in">println</span>(<span class="keyword">new</span> <span class="keyword">String</span>(jr.<span class="built_in">get</span>(k2)));
-        } <span class="keyword">catch</span> (Exception e) {
+             System.out.println(v);
+             System.out.println(new String(jr.get(k2)));
+        } catch (Exception e) {
 
         }
     }
@@ -158,22 +158,22 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
 
-/<span class="keyword">*</span><span class="keyword">*</span>  
- <span class="keyword">*</span> 连接和使用redis资源的工具类    
- <span class="keyword">*</span> <span class="comment">@author watson   </span>
- <span class="keyword">*</span> <span class="comment">@version 0.5   </span>
- <span class="keyword">*</span>/ 
+/**  
+ * 连接和使用redis资源的工具类    
+ * @author watson   
+ * @version 0.5   
+ */ 
 public class RedisUtil {
 
-    /<span class="keyword">*</span><span class="keyword">*</span>       
-     <span class="keyword">*</span> 数据源      
-     <span class="keyword">*</span>/     
+    /**       
+     * 数据源      
+     */     
     private JedisPool jedisPool;
 
-    /<span class="keyword">*</span><span class="keyword">*</span>      
-     <span class="keyword">*</span> 获取数据库连接       
-     <span class="keyword">*</span> <span class="comment">@return conn       </span>
-     <span class="keyword">*</span>/     
+    /**      
+     * 获取数据库连接       
+     * @return conn       
+     */     
     public Jedis getConnection() {
         Jedis jedis=null;          
         try {              
@@ -184,10 +184,10 @@ public class RedisUtil {
         return jedis;      
     }   
 
-    /<span class="keyword">*</span><span class="keyword">*</span>       
-     <span class="keyword">*</span> 关闭数据库连接       
-     <span class="keyword">*</span> <span class="comment">@param conn       </span>
-     <span class="keyword">*</span>/     
+    /**       
+     * 关闭数据库连接       
+     * @param conn       
+     */     
     public void closeConnection(Jedis jedis) {          
         if (null != jedis) {              
             try {                  
@@ -198,82 +198,82 @@ public class RedisUtil {
         }      
     }  
 
-    /<span class="keyword">*</span><span class="keyword">*</span>       
-     <span class="keyword">*</span> 设置连接池       
-     <span class="keyword">*</span> <span class="comment">@param 数据源      </span>
-     <span class="keyword">*</span>/     
+    /**       
+     * 设置连接池       
+     * @param 数据源      
+     */     
     public void setJedisPool(JedisPool JedisPool) {
         this.jedisPool = JedisPool;      
     }       
 
-    /<span class="keyword">*</span><span class="keyword">*</span>       
-     <span class="keyword">*</span> 获取连接池       
-     <span class="keyword">*</span> <span class="comment">@return 数据源       </span>
-     <span class="keyword">*</span>/     
+    /**       
+     * 获取连接池       
+     * @return 数据源       
+     */     
     public JedisPool getJedisPool() {
         return jedisPool;      
     }     
 } 
 </code></pre><p>(4).编写Listener。要使用Jedis的Publish/Subscribe功能，必须编写对JedisPubSub的自己的实现，其中的函数的功能如下:</p>
-<pre><code><span class="keyword">package</span> demo;
+<pre><code>package demo;
 
-<span class="keyword">import</span> redis.clients.jedis.JedisPubSub;
+import redis.clients.jedis.JedisPubSub;
 
-<span class="keyword">public</span> class MyListener extends JedisPubSub {
-    <span class="comment">// 取得订阅的消息后的处理</span>
-    <span class="keyword">public</span> <span class="keyword">void</span> onMessage(<span class="keyword">String</span> channel, <span class="keyword">String</span> message) {
-        System.out.<span class="built_in">println</span>(channel + <span class="string">"="</span> + message);
+public class MyListener extends JedisPubSub {
+    // 取得订阅的消息后的处理
+    public void onMessage(String channel, String message) {
+        System.out.println(channel + &quot;=&quot; + message);
     }
 
-    <span class="comment">// 初始化订阅时候的处理</span>
-    <span class="keyword">public</span> <span class="keyword">void</span> onSubscribe(<span class="keyword">String</span> channel, <span class="built_in">int</span> subscribedChannels) {
-        <span class="comment">// System.out.println(channel + "=" + subscribedChannels);</span>
+    // 初始化订阅时候的处理
+    public void onSubscribe(String channel, int subscribedChannels) {
+        // System.out.println(channel + &quot;=&quot; + subscribedChannels);
     }
 
-    <span class="comment">// 取消订阅时候的处理</span>
-    <span class="keyword">public</span> <span class="keyword">void</span> onUnsubscribe(<span class="keyword">String</span> channel, <span class="built_in">int</span> subscribedChannels) {
-        <span class="comment">// System.out.println(channel + "=" + subscribedChannels);</span>
+    // 取消订阅时候的处理
+    public void onUnsubscribe(String channel, int subscribedChannels) {
+        // System.out.println(channel + &quot;=&quot; + subscribedChannels);
     }
 
-    <span class="comment">// 初始化按表达式的方式订阅时候的处理</span>
-    <span class="keyword">public</span> <span class="keyword">void</span> onPSubscribe(<span class="keyword">String</span> pattern, <span class="built_in">int</span> subscribedChannels) {
-        <span class="comment">// System.out.println(pattern + "=" + subscribedChannels);</span>
+    // 初始化按表达式的方式订阅时候的处理
+    public void onPSubscribe(String pattern, int subscribedChannels) {
+        // System.out.println(pattern + &quot;=&quot; + subscribedChannels);
     }
 
-    <span class="comment">// 取消按表达式的方式订阅时候的处理</span>
-    <span class="keyword">public</span> <span class="keyword">void</span> onPUnsubscribe(<span class="keyword">String</span> pattern, <span class="built_in">int</span> subscribedChannels) {
-        <span class="comment">// System.out.println(pattern + "=" + subscribedChannels);</span>
+    // 取消按表达式的方式订阅时候的处理
+    public void onPUnsubscribe(String pattern, int subscribedChannels) {
+        // System.out.println(pattern + &quot;=&quot; + subscribedChannels);
     }
 
-    <span class="comment">// 取得按表达式的方式订阅的消息后的处理</span>
-    <span class="keyword">public</span> <span class="keyword">void</span> onPMessage(<span class="keyword">String</span> pattern, <span class="keyword">String</span> channel, <span class="keyword">String</span> message) {
-        System.out.<span class="built_in">println</span>(pattern + <span class="string">"="</span> + channel + <span class="string">"="</span> + message);
+    // 取得按表达式的方式订阅的消息后的处理
+    public void onPMessage(String pattern, String channel, String message) {
+        System.out.println(pattern + &quot;=&quot; + channel + &quot;=&quot; + message);
     }
 }
 </code></pre><p>(5).实现订阅动能<br>Jedis有两种订阅模式：subsribe(一般模式设置频道)和psubsribe(使用模式匹配来设置频道)。不管是那种模式都可以设置个数不定的频道。订阅得到信息在将会lister的onMessage(…)方法或者onPMessage(…)中进行进行处理，这里我们只是做了简单的输出。</p>
-<pre><code>ApplicationContext ac = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"beans-config.xml"</span>);
-RedisUtil ru = (RedisUtil) ac.getBean(<span class="string">"redisUtil"</span>);    
-<span class="keyword">final</span> Jedis jedis = ru.getConnection();
-<span class="keyword">final</span> MyListener listener = <span class="keyword">new</span> MyListener();
-<span class="comment">//可以订阅多个频道</span>
-<span class="comment">//订阅得到信息在lister的onMessage(...)方法中进行处理</span>
-<span class="comment">//jedis.subscribe(listener, "foo", "watson");</span>
+<pre><code>ApplicationContext ac = new ClassPathXmlApplicationContext(&quot;beans-config.xml&quot;);
+RedisUtil ru = (RedisUtil) ac.getBean(&quot;redisUtil&quot;);    
+final Jedis jedis = ru.getConnection();
+final MyListener listener = new MyListener();
+//可以订阅多个频道
+//订阅得到信息在lister的onMessage(...)方法中进行处理
+//jedis.subscribe(listener, &quot;foo&quot;, &quot;watson&quot;);
 
-<span class="comment">//也用数组的方式设置多个频道</span>
-<span class="comment">//jedis.subscribe(listener, new String[]{"hello_foo","hello_test"});</span>
+//也用数组的方式设置多个频道
+//jedis.subscribe(listener, new String[]{&quot;hello_foo&quot;,&quot;hello_test&quot;});
 
-<span class="comment">//这里启动了订阅监听，线程将在这里被阻塞</span>
-<span class="comment">//订阅得到信息在lister的onPMessage(...)方法中进行处理</span>
-jedis.psubscribe(listener, <span class="keyword">new</span> <span class="built_in">String</span>[]{<span class="string">"hello_*"</span>});<span class="comment">//使用模式匹配的方式设置频道</span>
+//这里启动了订阅监听，线程将在这里被阻塞
+//订阅得到信息在lister的onPMessage(...)方法中进行处理
+jedis.psubscribe(listener, new String[]{&quot;hello_*&quot;});//使用模式匹配的方式设置频道
 </code></pre><p>(6).实现发布端代码。发布消息只用调用Jedis的publish(…)方法即可。</p>
-<pre><code>ApplicationContext ac = new ClassPathXmlApplicationContext<span class="params">(<span class="string">"beans-config.xml"</span>)</span>;
-RedisUtil ru = <span class="params">(RedisUtil)</span> ac.getBean<span class="params">(<span class="string">"redisUtil"</span>)</span>;    
-Jedis jedis = ru.getConnection<span class="params">()</span>;
-jedis.publish<span class="params">(<span class="string">"hello_foo"</span>, <span class="string">"bar123"</span>)</span>;
-jedis.publish<span class="params">(<span class="string">"hello_test"</span>, <span class="string">"hello watson"</span>)</span>;
+<pre><code>ApplicationContext ac = new ClassPathXmlApplicationContext(&quot;beans-config.xml&quot;);
+RedisUtil ru = (RedisUtil) ac.getBean(&quot;redisUtil&quot;);    
+Jedis jedis = ru.getConnection();
+jedis.publish(&quot;hello_foo&quot;, &quot;bar123&quot;);
+jedis.publish(&quot;hello_test&quot;, &quot;hello watson&quot;);
 </code></pre><p>(7).分别运行上面的第5步的订阅端代码和第6步的发布端的代码，订阅端就可以得到发布端发布的结果。控制台输出结果如下：</p>
-<pre><code>hello_<span class="keyword">*</span>=hello_foo=bar123
-hello_<span class="keyword">*</span>=hello_test=hello watson
+<pre><code>hello_*=hello_foo=bar123
+hello_*=hello_test=hello watson
 </code></pre><p>redis的安装参考：<br>官方：<a href="http://redis.io/topics/quickstart" target="_blank" rel="external">http://redis.io/topics/quickstart</a><br>中文：<a href="http://www.cnblogs.com/redcreen/archive/2011/02/15/1955523.html" target="_blank" rel="external">http://www.cnblogs.com/redcreen/archive/2011/02/15/1955523.html</a><br>参考：<br>Jedis的高级使用：<a href="https://github.com/xetorthio/jedis/wiki/AdvancedUsage" target="_blank" rel="external">https://github.com/xetorthio/jedis/wiki/AdvancedUsage</a><br>netty里集成spring注入jedis：<a href="http://yifangyou.blog.51cto.com/900206/628163" target="_blank" rel="external">http://yifangyou.blog.51cto.com/900206/628163</a><br>Redis的Publish/Subscribe命令的使用：<a href="http://redis.io/topics/pubsub" target="_blank" rel="external">http://redis.io/topics/pubsub</a><br>Redis的使用：<a href="http://redis.io/" target="_blank" rel="external">http://redis.io/</a><br>Redis中文文档：<a href="http://redisdoc.com/" target="_blank" rel="external">http://redisdoc.com/</a></p>
 	  
 	</div>
@@ -283,9 +283,9 @@ hello_<span class="keyword">*</span>=hello_test=hello watson
 	<div class="pagination">
 <ul class="pagination">
 	 
-		
-          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>上一页</a></li>
-        
+				
+    	<li class="prev"><a href="/2015/12/13/mybatis1/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>上一页</a></li>
+  		
 
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
 

@@ -122,42 +122,42 @@ var _hmt = _hmt || [];
 	<div class="mypage">		
 	    <p>在mysql中索引是我们对数据库进行优化的一个很好的功能，下面我来给大家介绍mysql 索引的创建 删除 增加 修改方法，希望些教程对各位朋友有所帮助。</p>
 <p><strong>CREATE命令创建唯一索引：</strong><br>可以创建一个唯一索引的表。唯一的索引意味着两个行不能拥有相同的索引值。这里是语法来创建索引的表</p>
-<pre><code><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> index_name
-<span class="keyword">ON</span> table_name ( column1, column2,...);</span>
+<pre><code>CREATE UNIQUE INDEX index_name
+ON table_name ( column1, column2,...);
 </code></pre><p>可以使用一个或多个列上创建索引。例如，我们可以创建一个索引的使用在表tutorials_tbl的tutorial_author列上</p>
-<pre><code><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> AUTHOR_INDEX
-<span class="keyword">ON</span> tutorials_tbl (tutorial_author)</span>
+<pre><code>CREATE UNIQUE INDEX AUTHOR_INDEX
+ON tutorials_tbl (tutorial_author)
 </code></pre><p><strong>CREATE命令创建简单索引</strong><br>可以创建一个简单的索引的表。只要省略UNIQUE关键字的查询创建一个简单的索引。简单的索引允许重复表中的值。<br>如果你想在一列以降序索引值，可以在列名后添加保留字DESC：</p>
-<pre><code>mysql&gt; <span class="keyword">CREATE</span> <span class="keyword">INDEX</span> AUTHOR_INDEX
-<span class="keyword">ON</span> tutorials_tbl (tutorial_author <span class="keyword">DESC</span>)
+<pre><code>mysql&gt; CREATE INDEX AUTHOR_INDEX
+ON tutorials_tbl (tutorial_author DESC)
 </code></pre><a id="more"></a>
 <p><strong>ALTER命令添加和删除索引：</strong><br>有四种类型的语句表添加索引：</p>
-<pre><code><span class="operator"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tbl_name <span class="keyword">ADD</span> PRIMARY <span class="keyword">KEY</span> (column_list)</span>
+<pre><code>ALTER TABLE tbl_name ADD PRIMARY KEY (column_list)
 </code></pre><p>这条语句添加一个主键，这意味着索引值必须是唯一的，不能是NULL。</p>
-<pre><code><span class="operator"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tbl_name <span class="keyword">ADD</span> <span class="keyword">UNIQUE</span> index_name (column_list)</span>
+<pre><code>ALTER TABLE tbl_name ADD UNIQUE index_name (column_list)
 </code></pre><p>这条语句创建一个索引，其值必须是唯一的（除NULL值，这可能会多次出现）。</p>
-<pre><code><span class="operator"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tbl_name <span class="keyword">ADD</span> <span class="keyword">INDEX</span> index_name (column_list)</span>
+<pre><code>ALTER TABLE tbl_name ADD INDEX index_name (column_list)
 </code></pre><p>这增加了一个普通的索引，其中的任何值，可能会出现多于一次。</p>
-<pre><code><span class="operator"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tbl_name <span class="keyword">ADD</span> FULLTEXT index_name (column_list)</span>
+<pre><code>ALTER TABLE tbl_name ADD FULLTEXT index_name (column_list)
 </code></pre><p>这将创建一个特殊的FULLTEXT索引，用于文本搜索的目的。</p>
 <p>下面是这个例子，在现有的表添加索引。</p>
-<pre><code>mysql&gt; ALTER TABLE testalter_tbl ADD INDEX <span class="list">(<span class="keyword">c</span>)</span><span class="comment">;</span>
+<pre><code>mysql&gt; ALTER TABLE testalter_tbl ADD INDEX (c);
 </code></pre><p>可以删除任何INDEX通过使用DROP子句和使用ALTER命令。试试下面的例子上面创建的索引下降。</p>
-<pre><code>mysql&gt; ALTER TABLE testalter_tbl DROP INDEX <span class="list">(<span class="keyword">c</span>)</span><span class="comment">;</span>
+<pre><code>mysql&gt; ALTER TABLE testalter_tbl DROP INDEX (c);
 </code></pre><p>可以使用ALTER命令删除主键如下：</p>
-<pre><code>mysql&gt; ALTER TABLE testalter_tbl DROP PRIMARY <span class="keyword">KEY</span><span class="comment">;</span>
+<pre><code>mysql&gt; ALTER TABLE testalter_tbl DROP PRIMARY KEY;
 </code></pre><p>显示索引信息：<br>您可以使用SHOW INDEX命令，列出所有相关联的索引表。垂直格式输出（指定由 G）往往是有用的这句话，以避免长时间行重叠：</p>
-<pre><code>mysql&gt; SHOW <span class="keyword">INDEX</span> <span class="keyword">FROM</span> table_nameG
+<pre><code>mysql&gt; SHOW INDEX FROM table_nameG
 </code></pre><p><strong>ALTER命令加索引</strong><br>mysql&gt; alter table 表名 add index 索引名 (字段名1[，字段名2 …]);</p>
-<pre><code>mysql&gt; alter table employee add <span class="built_in">index</span> emp_name (<span class="keyword">name</span>);
+<pre><code>mysql&gt; alter table employee add index emp_name (name);
 </code></pre><p>加主关键字的索引<br>mysql&gt; alter table 表名 add primary key (字段名);</p>
-<pre><code>mysql&gt; alter table employee add primary key<span class="list">(<span class="keyword">id</span>)</span><span class="comment">;</span>
+<pre><code>mysql&gt; alter table employee add primary key(id);
 </code></pre><p>加唯一限制条件的索引<br>mysql&gt; alter table 表名 add unique 索引名 (字段名);</p>
-<pre><code>mysql&gt; alter table employee add unique emp_name2<span class="list">(<span class="keyword">cardnumber</span>)</span><span class="comment">;</span>
+<pre><code>mysql&gt; alter table employee add unique emp_name2(cardnumber);
 </code></pre><p>查看某个表的索引<br>mysql&gt; show index from 表名;</p>
-<pre><code>mysql&gt; show <span class="keyword">index</span> <span class="keyword">from</span> employee;
+<pre><code>mysql&gt; show index from employee;
 </code></pre><p>删除某个索引<br>mysql&gt; alter table 表名 drop index 索引名;</p>
-<pre><code>mysql&gt;alter <span class="keyword">table</span> employee <span class="keyword">drop</span> index emp_name;
+<pre><code>mysql&gt;alter table employee drop index emp_name;
 </code></pre><p>总结索引与优化<br>1、选择索引的数据类型<br>MySQL支持很多数据类型，选择合适的数据类型存储数据对性能有很大的影响。通常来说，可以遵循以下一些指导原则：<br>(1)越小的数据类型通常更好：越小的数据类型通常在磁盘、内存和CPU缓存中都需要更少的空间，处理起来更快。<br>(2)简单的数据类型更好：整型数据比起字符，处理开销更小，因为字符串的比较更复杂。在MySQL中，应该用内置的日期和时间数据类型，而不是用字符串来存储时间；以及用整型数据类型存储IP地址。<br>(3)尽量避免NULL：应该指定列为NOT NULL，除非你想存储NULL。在MySQL中，含有空值的列很难进行查询优化，因为它们使得索引、索引的统计信息以及比较运算更加复杂。你应该用0、一个特殊的值或者一个空串代替空值。</p>
 	  
 	</div>
