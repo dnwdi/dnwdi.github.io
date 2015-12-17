@@ -122,6 +122,113 @@ var _hmt = _hmt || [];
 	
 	<!-- display as entry -->	
 		<h3 class="title">
+			<div class="date"> 2015-12-17 </div>
+			<div class="article-title"><a href="/2015/12/17/freemarker1/" >freemarker页面如何获取绝对路径basePath</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <p>传统用相对路径方式</p>
+<ol>
+<li>freemarker获取系统相对路径方式</li>
+</ol>
+<p>spring-mvc.xml 中配置</p>
+<pre><code>&lt;!-- FreeMarker视图解析 如返回userinfo。。在这里配置后缀名ftl和视图解析器。。 --&gt;
+&lt;bean id=&quot;viewResolverFtl&quot;
+    class=&quot;org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver&quot;&gt;
+    &lt;property name=&quot;viewClass&quot;
+        value=&quot;org.springframework.web.servlet.view.freemarker.FreeMarkerView&quot; /&gt;
+    &lt;property name=&quot;suffix&quot; value=&quot;.ftl&quot; /&gt;
+    &lt;property name=&quot;contentType&quot; value=&quot;text/html;charset=UTF-8&quot; /&gt;
+    &lt;property name=&quot;exposeRequestAttributes&quot; value=&quot;true&quot; /&gt;
+    &lt;property name=&quot;exposeSessionAttributes&quot; value=&quot;true&quot; /&gt;
+    &lt;property name=&quot;exposeSpringMacroHelpers&quot; value=&quot;true&quot; /&gt;
+    &lt;property name=&quot;requestContextAttribute&quot; value=&quot;request&quot; /&gt;
+    &lt;property name=&quot;cache&quot; value=&quot;true&quot; /&gt;
+    &lt;property name=&quot;order&quot; value=&quot;0&quot; /&gt;
+&lt;/bean&gt;
+</code></pre><p>其中<code>&lt;property name=&quot;requestContextAttribute&quot; value=&quot;request&quot; /&gt;</code>是关键。</p>
+<p>ftl页面中设置</p>
+<pre><code>&lt;#assign base=request.contextPath /&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;zh&quot;&gt;
+&lt;head&gt;
+    &lt;base id=&quot;base&quot; href=&quot;${base}&quot;&gt;
+    &lt;title&gt;首页&lt;/title&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;
+    &lt;link href=&quot;${base}/static/bootstrap-3.3.4/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+    &lt;script src=&quot;${base}/static/bootstrap-3.3.4/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
+</code></pre><p>js文件中获取path</p>
+<pre><code>var base = document.getElementById(&quot;base&quot;).href;
+// 与后台交互
+_send = function(async, url, value, success, error) {
+    $.ajax({
+        async : async,
+        url : base + &apos;/&apos; + url,
+        contentType : &quot;application/x-www-form-urlencoded; charset=utf-8&quot;,
+        data : value,
+        dataType : &apos;json&apos;,
+        type : &apos;post&apos;,
+        success : function(data) {
+            success(data);
+        },
+        error : function(data) {
+            error(data);
+        }
+    });
+};
+</code></pre><p>即可获取带项目名的路径，但这路径是相对路径,浏览器输入<a href="http://localhost:8080/test-web/index.html访问，一切OK。">http://localhost:8080/test-web/index.html访问，一切OK。</a></p>
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/12/17/freemarker1/#more" class="btn btn-default more">阅读此文</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2015-12-17 </div>
+			<div class="article-title"><a href="/2015/12/17/mybatis2/" >MyBatis学习笔记二</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <ol>
+<li>引入外部的jdbc.properties配置文件，需在mybatis-config.xml的configuration节点下添加 <code>&lt;properties resource=&quot;com/yyq/config/jdbc.properties&quot; /&gt;</code></li>
+<li>使用Dao的updates/deletes/inserts 后需要sqlSession.commit提交执行，否则不执行，select不需要commit</li>
+<li>Dao函数参数为一个简单参数时，可以直接作为方法参数；函数参数为多个参数时，函数参数需为map，key为映射文件sql中的参数名，value为实际值，Mybatis会自动完成匹配</li>
+<li>使用TestNG进行单元测试时，需要测试方法按顺序执行. 解决：在testng配置文件配置methods节点，默认按方法排列顺序执行.</li>
+</ol>
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/12/17/mybatis2/#more" class="btn btn-default more">阅读此文</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
 			<div class="date"> 2015-12-14 </div>
 			<div class="article-title"><a href="/2015/12/14/hadoop1/" >hadoop学习笔记一</a></div>						
 		</h3>
@@ -447,78 +554,6 @@ public static void main(String[] args) {
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2015-08-17 </div>
-			<div class="article-title"><a href="/2015/08/17/sql-join/" >sql之left join、right join、inner join的区别</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-  
-	<div class="col-md-12">
-	  
-	
-	  <p><strong>left join(左联接) 返回包括左表中的所有记录和右表中联结字段相等的记录</strong> </p>
-<p><strong>right join(右联接) 返回包括右表中的所有记录和左表中联结字段相等的记录</strong></p>
-<p><strong>inner join(等值连接) 只返回两个表中联结字段相等的行</strong></p>
-<p>举例如下： </p>
-<p>表A记录如下：<br>aID　　　　　aNum<br>1　　　　　a20050111<br>2　　　　　a20050112<br>3　　　　　a20050113<br>4　　　　　a20050114<br>5　　　　　a20050115</p>
-<p>表B记录如下:<br>bID　　　　　bName<br>1　　　　　2006032401<br>2　　　　　2006032402<br>3　　　　　2006032403<br>4　　　　　2006032404<br>8　　　　　2006032408</p>
-<p>1.left join<br>sql语句如下: </p>
-<pre><code>select * from A
-left join B 
-on A.aID = B.bID
-</code></pre>
-	
-	</div>
-	
-  
-</div>
-	<a type="button" href="/2015/08/17/sql-join/#more" class="btn btn-default more">阅读此文</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2015-08-11 </div>
-			<div class="article-title"><a href="/2015/08/11/mysql-index/" >MySQL索引创建 删除 增加 修改命令</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-  
-	<div class="col-md-12">
-	  
-	
-	  <p>在mysql中索引是我们对数据库进行优化的一个很好的功能，下面我来给大家介绍mysql 索引的创建 删除 增加 修改方法，希望些教程对各位朋友有所帮助。</p>
-<p><strong>CREATE命令创建唯一索引：</strong><br>可以创建一个唯一索引的表。唯一的索引意味着两个行不能拥有相同的索引值。这里是语法来创建索引的表</p>
-<pre><code>CREATE UNIQUE INDEX index_name
-ON table_name ( column1, column2,...);
-</code></pre><p>可以使用一个或多个列上创建索引。例如，我们可以创建一个索引的使用在表tutorials_tbl的tutorial_author列上</p>
-<pre><code>CREATE UNIQUE INDEX AUTHOR_INDEX
-ON tutorials_tbl (tutorial_author)
-</code></pre><p><strong>CREATE命令创建简单索引</strong><br>可以创建一个简单的索引的表。只要省略UNIQUE关键字的查询创建一个简单的索引。简单的索引允许重复表中的值。<br>如果你想在一列以降序索引值，可以在列名后添加保留字DESC：</p>
-<pre><code>mysql&gt; CREATE INDEX AUTHOR_INDEX
-ON tutorials_tbl (tutorial_author DESC)
-</code></pre>
-	
-	</div>
-	
-  
-</div>
-	<a type="button" href="/2015/08/11/mysql-index/#more" class="btn btn-default more">阅读此文</a>
-</div>
-
-		
 
 		</div>
 
@@ -565,6 +600,8 @@ ON tutorials_tbl (tutorial_author DESC)
 		<h4>分类</h4>
 		<ul class="tag_box inline list-unstyled">
 		
+			<li><a href="/categories/freemarker/">freemarker<span>1</span></a></li>
+		
 			<li><a href="/categories/git/">git<span>1</span></a></li>
 		
 			<li><a href="/categories/hadoop/">hadoop<span>1</span></a></li>
@@ -573,7 +610,7 @@ ON tutorials_tbl (tutorial_author DESC)
 		
 			<li><a href="/categories/life/">life<span>1</span></a></li>
 		
-			<li><a href="/categories/mybatis/">mybatis<span>1</span></a></li>
+			<li><a href="/categories/mybatis/">mybatis<span>2</span></a></li>
 		
 			<li><a href="/categories/mysql/">mysql<span>2</span></a></li>
 		
@@ -590,35 +627,37 @@ ON tutorials_tbl (tutorial_author DESC)
 		<h4>标签云</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/mysql/">mysql<span>2</span></a></li>
-		
-			<li><a href="/tags/git/">git<span>1</span></a></li>
-		
-			<li><a href="/tags/yield/">yield<span>1</span></a></li>
-		
-			<li><a href="/tags/hadoop/">hadoop<span>1</span></a></li>
-		
-			<li><a href="/tags/life/">life<span>1</span></a></li>
-		
-			<li><a href="/tags/hexo/">hexo<span>2</span></a></li>
+			<li><a href="/tags/lambda/">lambda<span>1</span></a></li>
 		
 			<li><a href="/tags/pub/">pub<span>1</span></a></li>
 		
-			<li><a href="/tags/mybatis/">mybatis<span>1</span></a></li>
-		
-			<li><a href="/tags/lambda/">lambda<span>1</span></a></li>
-		
-			<li><a href="/tags/redis/">redis<span>3</span></a></li>
+			<li><a href="/tags/hadoop/">hadoop<span>1</span></a></li>
 		
 			<li><a href="/tags/sub/">sub<span>1</span></a></li>
 		
-			<li><a href="/tags/file/">file<span>1</span></a></li>
+			<li><a href="/tags/mybatis/">mybatis<span>2</span></a></li>
+		
+			<li><a href="/tags/hexo/">hexo<span>2</span></a></li>
+		
+			<li><a href="/tags/redis/">redis<span>3</span></a></li>
+		
+			<li><a href="/tags/freemarker/">freemarker<span>1</span></a></li>
+		
+			<li><a href="/tags/yield/">yield<span>1</span></a></li>
 		
 			<li><a href="/tags/index/">index<span>1</span></a></li>
 		
+			<li><a href="/tags/branch/">branch<span>1</span></a></li>
+		
+			<li><a href="/tags/mysql/">mysql<span>2</span></a></li>
+		
+			<li><a href="/tags/file/">file<span>1</span></a></li>
+		
 			<li><a href="/tags/python/">python<span>3</span></a></li>
 		
-			<li><a href="/tags/branch/">branch<span>1</span></a></li>
+			<li><a href="/tags/life/">life<span>1</span></a></li>
+		
+			<li><a href="/tags/git/">git<span>1</span></a></li>
 		
 		 
 		</ul>
@@ -632,6 +671,14 @@ ON tutorials_tbl (tutorial_author DESC)
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2015/12/17/freemarker1/" ><i class="fa fa-file-o"></i>freemarker页面如何获取绝对路径basePat...</a>
+      </li>
+    
+      <li>
+        <a href="/2015/12/17/mybatis2/" ><i class="fa fa-file-o"></i>MyBatis学习笔记二...</a>
+      </li>
+    
+      <li>
         <a href="/2015/12/14/hadoop1/" ><i class="fa fa-file-o"></i>hadoop学习笔记一...</a>
       </li>
     
@@ -641,14 +688,6 @@ ON tutorials_tbl (tutorial_author DESC)
     
       <li>
         <a href="/2015/08/24/redis-pub-sub/" ><i class="fa fa-file-o"></i>Redis之发布与订阅...</a>
-      </li>
-    
-      <li>
-        <a href="/2015/08/19/python-yield/" ><i class="fa fa-file-o"></i>Python之yield...</a>
-      </li>
-    
-      <li>
-        <a href="/2015/08/19/python-file/" ><i class="fa fa-file-o"></i>Python之file...</a>
       </li>
     
   </ul>

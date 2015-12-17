@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>mybatis学习笔记一 | dnwdi</title>
+  <title>MyBatis学习笔记二 | dnwdi</title>
   <meta name="author" content="dnwdi">
   
   <meta name="description" content="dnwdi&#39;s blog | java">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="mybatis学习笔记一"/>
+  <meta property="og:title" content="MyBatis学习笔记二"/>
   <meta property="og:site_name" content="dnwdi"/>
 
   
@@ -104,7 +104,7 @@ var _hmt = _hmt || [];
 
 	
 		<div class="page-header">		
-			<h1> mybatis学习笔记一</h1>
+			<h1> MyBatis学习笔记二</h1>
 		</div>		
 	
 
@@ -120,32 +120,12 @@ var _hmt = _hmt || [];
 
 	<!-- content -->
 	<div class="mypage">		
-	    <p>一. MyBatis特点</p>
-<ol>
-<li>MyBatis相对于Hibernate更轻量，更简单</li>
-<li>SQL语句与代码分离</li>
-<li>面向配置的编程，可维护性，可扩展性大大增强</li>
-<li>良好支持复杂数据映射</li>
-<li>动态SQL，替换拼装SQL，更安全</li>
+	    <ol>
+<li>引入外部的jdbc.properties配置文件，需在mybatis-config.xml的configuration节点下添加 <code>&lt;properties resource=&quot;com/yyq/config/jdbc.properties&quot; /&gt;</code></li>
+<li>使用Dao的updates/deletes/inserts 后需要sqlSession.commit提交执行，否则不执行，select不需要commit</li>
+<li>Dao函数参数为一个简单参数时，可以直接作为方法参数；函数参数为多个参数时，函数参数需为map，key为映射文件sql中的参数名，value为实际值，Mybatis会自动完成匹配</li>
+<li>使用TestNG进行单元测试时，需要测试方法按顺序执行. 解决：在testng配置文件配置methods节点，默认按方法排列顺序执行.</li>
 </ol>
-<p>二. 环境搭建</p>
-<ol>
-<li>导入Jar包</li>
-<li>配置日志文件，更改日志输出级别（Debug）</li>
-</ol>
-<p>三. MyBatis工作流程</p>
-<ol>
-<li>读取基本配置文件</li>
-<li>生成SqlSessionFactory</li>
-<li>建立SqlSession</li>
-<li>调用Mybatis提供的API</li>
-<li>查询MAP配置</li>
-<li>返回结果</li>
-<li>关闭SqlSession</li>
-</ol>
-<p>(1). 基本配置文件<br>a. 连接数据库信息 environments<br>    一个environment对应一个连接数据库信息<br>b. map文件位置 mappers</p>
-<p>(2). SqlSession<br>a. SqlSessionFactory是程序级<br>b. SqlSession是方法级</p>
-<p>(3). map文件(包含sql语句)<br>a. 相对路径引用 resource<br>b. 绝对路径引用 url<br>c. 包路径引用 package name </p>
 	  
 	</div>
 
@@ -155,13 +135,13 @@ var _hmt = _hmt || [];
 <ul class="pagination">
 	 
 				
-    	<li class="prev"><a href="/2015/12/14/hadoop1/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>上一页</a></li>
+    	<li class="prev"><a href="/2015/12/17/freemarker1/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>上一页</a></li>
   		
 
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/08/24/redis-pub-sub/" class="alignright next">下一页<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/12/14/hadoop1/" class="alignright next">下一页<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -176,7 +156,7 @@ var _hmt = _hmt || [];
   <h2 class="title">留言</h2>
 
   
-  	 <div class="ds-thread" data-thread-key="2015/12/13/mybatis1/" data-title="mybatis学习笔记一" data-url="http://www.dnwdi.com/2015/12/13/mybatis1/"></div>  
+  	 <div class="ds-thread" data-thread-key="2015/12/17/mybatis2/" data-title="MyBatis学习笔记二" data-url="http://www.dnwdi.com/2015/12/17/mybatis2/"></div>  
   
 </section>
 
@@ -190,7 +170,7 @@ var _hmt = _hmt || [];
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	2015-12-13 
+	2015-12-17 
 	</div>
 	
 

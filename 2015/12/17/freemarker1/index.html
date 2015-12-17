@@ -1,0 +1,372 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>freemarker页面如何获取绝对路径basePath | dnwdi</title>
+  <meta name="author" content="dnwdi">
+  
+  <meta name="description" content="dnwdi&#39;s blog | java">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="freemarker页面如何获取绝对路径basePath"/>
+  <meta property="og:site_name" content="dnwdi"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?0986145b5268afabc4775f6b43e924ab";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  
+  <script src="/snow/js/snow.js"></script>
+  <script>createSnow('', 6);</script>
+  
+  <script src="/water/js/jquery.ripples.js"></script>
+</head>
+
+ <body>
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">dnwdi</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> freemarker页面如何获取绝对路径basePath</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div class="col-md-9">
+	
+
+			
+
+	<!-- content -->
+	<div class="mypage">		
+	    <p>传统用相对路径方式</p>
+<ol>
+<li>freemarker获取系统相对路径方式</li>
+</ol>
+<p>spring-mvc.xml 中配置</p>
+<pre><code>&lt;!-- FreeMarker视图解析 如返回userinfo。。在这里配置后缀名ftl和视图解析器。。 --&gt;
+&lt;bean id=&quot;viewResolverFtl&quot;
+    class=&quot;org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver&quot;&gt;
+    &lt;property name=&quot;viewClass&quot;
+        value=&quot;org.springframework.web.servlet.view.freemarker.FreeMarkerView&quot; /&gt;
+    &lt;property name=&quot;suffix&quot; value=&quot;.ftl&quot; /&gt;
+    &lt;property name=&quot;contentType&quot; value=&quot;text/html;charset=UTF-8&quot; /&gt;
+    &lt;property name=&quot;exposeRequestAttributes&quot; value=&quot;true&quot; /&gt;
+    &lt;property name=&quot;exposeSessionAttributes&quot; value=&quot;true&quot; /&gt;
+    &lt;property name=&quot;exposeSpringMacroHelpers&quot; value=&quot;true&quot; /&gt;
+    &lt;property name=&quot;requestContextAttribute&quot; value=&quot;request&quot; /&gt;
+    &lt;property name=&quot;cache&quot; value=&quot;true&quot; /&gt;
+    &lt;property name=&quot;order&quot; value=&quot;0&quot; /&gt;
+&lt;/bean&gt;
+</code></pre><p>其中<code>&lt;property name=&quot;requestContextAttribute&quot; value=&quot;request&quot; /&gt;</code>是关键。</p>
+<p>ftl页面中设置</p>
+<pre><code>&lt;#assign base=request.contextPath /&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;zh&quot;&gt;
+&lt;head&gt;
+    &lt;base id=&quot;base&quot; href=&quot;${base}&quot;&gt;
+    &lt;title&gt;首页&lt;/title&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;
+    &lt;link href=&quot;${base}/static/bootstrap-3.3.4/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+    &lt;script src=&quot;${base}/static/bootstrap-3.3.4/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
+</code></pre><p>js文件中获取path</p>
+<pre><code>var base = document.getElementById(&quot;base&quot;).href;
+// 与后台交互
+_send = function(async, url, value, success, error) {
+    $.ajax({
+        async : async,
+        url : base + &apos;/&apos; + url,
+        contentType : &quot;application/x-www-form-urlencoded; charset=utf-8&quot;,
+        data : value,
+        dataType : &apos;json&apos;,
+        type : &apos;post&apos;,
+        success : function(data) {
+            success(data);
+        },
+        error : function(data) {
+            error(data);
+        }
+    });
+};
+</code></pre><p>即可获取带项目名的路径，但这路径是相对路径,浏览器输入<a href="http://localhost:8080/test-web/index.html访问，一切OK。" target="_blank" rel="external">http://localhost:8080/test-web/index.html访问，一切OK。</a></p>
+<a id="more"></a>
+<p>使用绝对路径方式</p>
+<ol>
+<li>问题来源</li>
+</ol>
+<p>用域名直接访问系统，修改tomcat7配置文件使用<a href="http://localhost/index.html方式，即配置默认80端口和虚拟项目名称为空。" target="_blank" rel="external">http://localhost/index.html方式，即配置默认80端口和虚拟项目名称为空。</a></p>
+<p>server.xml配置</p>
+<pre><code>&lt;Connector port=&quot;80&quot; protocol=&quot;HTTP/1.1&quot; connectionTimeout=&quot;20000&quot; redirectPort=&quot;8443&quot; /&gt;
+&lt;Host name=&quot;localhost&quot;  appBase=&quot;webapps&quot;
+        unpackWARs=&quot;true&quot; autoDeploy=&quot;true&quot;&gt;
+    &lt;Valve className=&quot;org.apache.catalina.valves.AccessLogValve&quot; directory=&quot;logs&quot;
+           prefix=&quot;localhost_access_log.&quot; suffix=&quot;.txt&quot;
+           pattern=&quot;%h %l %u %t &amp;quot;%r&amp;quot; %s %b&quot; /&gt;
+
+    &lt;Context path=&quot;&quot; docBase=&quot;test-web&quot; reloadable=&quot;true&quot;/&gt;
+
+  &lt;/Host&gt;
+</code></pre><p>修改后var base = document.getElementById(“base”).href;获取的base值是<a href="http://localhost/index.html但" target="_blank" rel="external">http://localhost/index.html但</a><base id="base" href="${base}">这里的href=””所以导致ajax的请求url : base + ‘/‘ + url,出现了问题。<br>    或者修改项目的Properties-&gt;Web Project Settings 修改Context root为 “/“</p>
+<ol>
+<li>解决方案</li>
+</ol>
+<p>增加spring拦截器，获取HttpServletRequest，拼装绝对路径放在request的attribute属性中，ftl文件中直接<code>${basePath}</code>取值就可以了,静态文件<code>&lt;link href=&quot;${basePath}/static/bower_components/bootstrap/dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt; body中的隐藏表单&lt;input type=&quot;hidden&quot; id=&quot;base&quot; value=&quot;${basePath}&quot; /&gt;</code>，js获取path也可以通过隐藏表单获取<code>var base = $(&#39;#base&#39;).val();</code></p>
+<p>拦截器代码</p>
+<pre><code>public class BasePathInterceptor extends HandlerInterceptorAdapter {
+
+private static Logger logger = Logger.getLogger(BasePathInterceptor.class);
+
+public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        String scheme = request.getScheme();
+        String serverName = request.getServerName();
+        int port = request.getServerPort();
+        String path = request.getContextPath();
+        String basePath = scheme + &quot;://&quot; + serverName + &quot;:&quot; + port + path;
+        logger.info(basePath);
+        request.setAttribute(&quot;basePath&quot;, basePath);
+        return true;
+    }
+
+}
+</code></pre><p>spring-mvc.xml中配置拦截器，拦截顺序至上而下</p>
+<pre><code>&lt;mvc:interceptors&gt;
+    &lt;mvc:interceptor&gt;
+        &lt;mvc:mapping path=&quot;/**&quot;/&gt;
+        &lt;bean class=&quot;com.test.interceptor.BasePathInterceptor&quot;&gt;&lt;/bean&gt;
+    &lt;/mvc:interceptor&gt;
+    &lt;mvc:interceptor&gt;
+        &lt;mvc:mapping path=&quot;/**&quot;/&gt;
+        &lt;mvc:exclude-mapping path=&quot;/login.html&quot;/&gt;
+        &lt;!-- &lt;mvc:exclude-mapping path=&quot;/*/ajax/**&quot;/&gt; --&gt;
+        &lt;bean class=&quot;com.test.interceptor.LoginInterceptor&quot;&gt;&lt;/bean&gt;
+    &lt;/mvc:interceptor&gt;
+&lt;/mvc:interceptors&gt;
+</code></pre><p>用上绝对路径之后，就会避免很多因为引用路径上带来的问题。</p>
+<p>以上思路参考<a href="http://www.oschina.net/question/860595_140510的解决方案，通过继承freemarker视图解析类org.springframework.web.servlet.view.freemarker.FreeMarkerView，重写exposeHelpers方法，在spring里配置自己的freemarker的视图解析器，在模板中就可以通过`${base}`获取。" target="_blank" rel="external">http://www.oschina.net/question/860595_140510的解决方案，通过继承freemarker视图解析类org.springframework.web.servlet.view.freemarker.FreeMarkerView，重写exposeHelpers方法，在spring里配置自己的freemarker的视图解析器，在模板中就可以通过`${base}`获取。</a></p>
+<p>MyFreeMarkerView 代码</p>
+<pre><code>public class MyFreeMarkerView extends FreeMarkerView {
+    private static final String CONTEXT_PATH = &quot;base&quot;; 
+    @Override
+    protected void exposeHelpers(Map&lt;String, Object&gt; model,
+        HttpServletRequest request) throws Exception {
+        model.put(CONTEXT_PATH, request.getContextPath());
+        super.exposeHelpers(model, request);
+    }
+
+}
+</code></pre><p>spring-mvc.xml配置</p>
+<pre><code>&lt;bean class=&quot;org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver&quot;&gt;
+    &lt;!-- 自定义FreeMarkerView，用来定义项目的全局路径 --&gt;
+    &lt;property name=&quot;viewClass&quot; value=&quot;com.kyt.utils.MyFreeMarkerView&quot; /&gt;
+&lt;/bean&gt;
+</code></pre>	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>上一页</a></li>
+        
+
+        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2015/12/17/mybatis2/" class="alignright next">下一页<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">留言</h2>
+
+  
+  	 <div class="ds-thread" data-thread-key="2015/12/17/freemarker1/" data-title="freemarker页面如何获取绝对路径basePath" data-url="http://www.dnwdi.com/2015/12/17/freemarker1/"></div>  
+  
+</section>
+
+	
+	</div> <!-- col-md-9/col-md-12 -->
+	
+	
+		<div class="col-md-3"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2015-12-17 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/freemarker/">freemarker<span>1</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/freemarker/">freemarker<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	
+
+</div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2015 dnwdi
+  
+      Go For IT!    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = { short_name: 'dnwdi' };
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';
+    ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+</body>
+   </html>
